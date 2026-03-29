@@ -607,7 +607,7 @@
                 <p>We typically respond within 24 hours and are happy to arrange a phone call, video chat, or in-person meeting at your convenience.</p>
                 <ul class="contact-details">
                     <li><a href="tel:01202059325">01202 059325</a></li>
-                    <li><a href="/cdn-cgi/l/email-protection#11787f777e51747a7e7467747f65623f727e3f647a"><span class="__cf_email__" data-cfemail="0f666169604f6a64606a796a617b7c216c60217a64">[email&#160;protected]</span></a></li>
+                    <li><a href="mailto:info@ekoevents.co.uk">info@ekoevents.co.uk</a></li>
                     <li>Based in Bournemouth, UK</li>
                     <li>Covering weddings across Dorset, Hampshire &amp; South England</li>
                 </ul>
@@ -642,7 +642,7 @@
             </ul>
             <ul class="footer-contact-mini">
                 <li><a href="tel:01202059325">01202 059325</a></li>
-                <li><a href="/cdn-cgi/l/email-protection#741d1a121b34111f1b1102111a00075a171b5a011f"><span class="__cf_email__" data-cfemail="5c35323a331c393733392a3932282f723f33722937">[email&#160;protected]</span></a></li>
+                <li><a href="mailto:info@ekoevents.co.uk">info@ekoevents.co.uk</a></li>
                 <li>Based in Bournemouth, UK</li>
             </ul>
         </div>
@@ -652,13 +652,26 @@
         </div>
     </div>
 </footer>
-
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-    // Nav
-    window.addEventListener('scroll', () => {
-        document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 80);
-    });
+<script>
 
     // Testimonials
-    const dots = document.querySelectorAll('.testimonial-dot');
-    const items = document
+    var dots = document.querySelectorAll('.testimonial-dot');
+    var items = document.querySelectorAll('.testimonial-item');
+    var cur = 0;
+    function showSlide(i) {
+        for (var j = 0; j < items.length; j++) { items[j].classList.remove('active'); }
+        for (var j = 0; j < dots.length; j++) { dots[j].classList.remove('active'); }
+        items[i].classList.add('active');
+        dots[i].classList.add('active');
+        cur = i;
+    }
+    for (var j = 0; j < dots.length; j++) {
+        (function(idx) {
+            dots[idx].addEventListener('click', function() { showSlide(idx); });
+        })(j);
+    }
+    setInterval(function() { showSlide((cur + 1) % items.length); }, 6000);
+</script>
+
+</body>
+</html>

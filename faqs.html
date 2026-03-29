@@ -860,7 +860,7 @@
         <p>We're here to help! Whether you're at the start of your planning journey or ready to book, we'd love to hear from you.</p>
         <ul class="still-contact">
             <li>Call us: <a href="tel:01202059325">01202 059325</a></li>
-            <li>Email: <a href="/cdn-cgi/l/email-protection#93fafdf5fcd3f6f8fcf6e5f6fde7e0bdf0fcbde6f8"><span class="__cf_email__" data-cfemail="6a03040c052a0f01050f1c0f041e19440905441f01">[email&#160;protected]</span></a></li>
+            <li>Email: <a href="mailto:info@ekoevents.co.uk">info@ekoevents.co.uk</a></li>
         </ul>
         <a href="contact.html" class="btn">Get in Touch</a>
     </div>
@@ -879,7 +879,7 @@
                 <p>We typically respond within 24 hours and are happy to arrange a phone call, video chat, or in-person meeting at your convenience.</p>
                 <ul class="contact-details">
                     <li><a href="tel:01202059325" style="color:inherit;">01202 059325</a></li>
-                    <li><a href="/cdn-cgi/l/email-protection#a8c1c6cec7e8cdc3c7cddecdc6dcdb86cbc786ddc3" style="color:inherit;"><span class="__cf_email__" data-cfemail="452c2b232a05202e2a2033202b31366b262a6b302e">[email&#160;protected]</span></a></li>
+                    <li><a href="mailto:info@ekoevents.co.uk">info@ekoevents.co.uk</a></li>
                     <li>Based in Bournemouth, UK</li>
                     <li>Covering weddings across Dorset, Hampshire &amp; South England</li>
                 </ul>
@@ -916,7 +916,7 @@
             </ul>
             <ul class="footer-contact-mini">
                 <li><a href="tel:01202059325">01202 059325</a></li>
-                <li><a href="/cdn-cgi/l/email-protection#f79e999198b7929c98928192998384d99498d9829c"><span class="__cf_email__" data-cfemail="573e39313817323c3832213239232479343879223c">[email&#160;protected]</span></a></li>
+                <li><a href="mailto:info@ekoevents.co.uk">info@ekoevents.co.uk</a></li>
                 <li>Based in Bournemouth, UK</li>
             </ul>
         </div>
@@ -926,11 +926,22 @@
         </div>
     </div>
 </footer>
+<script>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-    // Nav
-    window.addEventListener('scroll', function() {
-        document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 80);
-    });
+    // FAQ
+    function toggleFaq(btn) {
+        var item = btn.parentElement;
+        var wasOpen = item.classList.contains('open');
+        var siblings = item.parentElement.querySelectorAll('.faq-item');
+        for (var i = 0; i < siblings.length; i++) { siblings[i].classList.remove('open'); }
+        if (!wasOpen) item.classList.add('open');
+    }
 
     // Category toggle
+    function toggleCat(btn) {
+        btn.closest('.faq-category').classList.toggle('open');
+    }
+</script>
+
+</body>
+</html>
