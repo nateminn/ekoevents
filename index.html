@@ -402,55 +402,9 @@
             .gallery-grid { grid-template-columns: 1fr 1fr; gap: 6px; }
         }
     
-        /* ─── PREMIUM MOTION ─── */
-        [data-reveal] {
-            opacity: 0;
-            transform: translateY(28px);
-            transition: opacity 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
-                        transform 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-        [data-reveal="left"] { transform: translateX(-32px); }
-        [data-reveal="right"] { transform: translateX(32px); }
-        [data-reveal="scale"] { transform: scale(0.95); }
-        [data-reveal].revealed {
-            opacity: 1;
-            transform: translateY(0) translateX(0) scale(1);
-        }
-
-        /* Stagger children */
-        [data-stagger] > * {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-                        transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-        [data-stagger].revealed > *:nth-child(1) { transition-delay: 0.05s; }
-        [data-stagger].revealed > *:nth-child(2) { transition-delay: 0.12s; }
-        [data-stagger].revealed > *:nth-child(3) { transition-delay: 0.19s; }
-        [data-stagger].revealed > *:nth-child(4) { transition-delay: 0.26s; }
-        [data-stagger].revealed > *:nth-child(5) { transition-delay: 0.33s; }
-        [data-stagger].revealed > *:nth-child(6) { transition-delay: 0.40s; }
-        [data-stagger].revealed > *:nth-child(7) { transition-delay: 0.47s; }
-        [data-stagger].revealed > *:nth-child(8) { transition-delay: 0.54s; }
-        [data-stagger].revealed > *:nth-child(9) { transition-delay: 0.61s; }
-        [data-stagger].revealed > *:nth-child(10) { transition-delay: 0.68s; }
-        [data-stagger].revealed > *:nth-child(11) { transition-delay: 0.75s; }
-        [data-stagger].revealed > *:nth-child(12) { transition-delay: 0.82s; }
-        [data-stagger].revealed > * {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Divider line animation */
-        .divider {
-            width: 0;
-            transition: width 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s;
-        }
-        .revealed .divider,
-        [data-reveal].revealed + .divider,
-        [data-reveal].revealed .divider { width: 48px; }
-
-        /* Button hover fill effect */
+        /* ─── PREMIUM INTERACTIONS ─── */
+        
+        /* Button hover fill */
         .btn-gold, .fbtn, .form-submit {
             position: relative;
             overflow: hidden;
@@ -459,7 +413,7 @@
         .btn-gold::before, .fbtn::before, .form-submit::before {
             content: '';
             position: absolute;
-            top: 0; left: -100%; 
+            top: 0; left: -100%;
             width: 100%; height: 100%;
             background: var(--accent-hover);
             transition: left 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -477,33 +431,8 @@
             box-shadow: 0 12px 36px rgba(0,0,0,0.08);
         }
 
-        /* Image placeholder hover */
-        .img-placeholder {
-            transition: background 0.4s;
-        }
-        .img-placeholder:hover {
-            background: #eaeaea;
-        }
-
-        /* Gallery item cinematic hover */
-        .gallery-card:hover .img-placeholder,
-        .gallery-item:hover .img-placeholder {
-            background: #e0e0e0;
-        }
-
-        /* Smooth label tracking */
-        .label {
-            display: inline-block;
-            transition: letter-spacing 0.4s;
-        }
-        [data-reveal].revealed .label {
-            letter-spacing: 4px;
-        }
-
-        /* Nav link underline animation */
-        .nav-links a {
-            position: relative;
-        }
+        /* Nav link underline */
+        .nav-links a { position: relative; }
         .nav-links a::after {
             content: '';
             position: absolute;
@@ -514,8 +443,8 @@
         }
         .nav-links a:hover::after { width: 100%; }
 
-        /* Testimonial fade transition */
-        .titem, .testimonial-item {
+        /* Testimonial fade */
+        .titem.active, .testimonial-item.active {
             animation: fadeQuote 0.5s ease;
         }
         @keyframes fadeQuote {
@@ -524,56 +453,20 @@
         }
 
         /* FAQ smooth expand */
-        .faq-item, .faq-a, .faq-answer, .faq-cat-body {
-            transition: max-height 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-                        padding 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        .faq-a, .faq-answer, .faq-cat-body {
+            transition: max-height 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
-        /* Why list items stagger on reveal */
-        .why-list li {
-            opacity: 0;
-            transform: translateX(-12px);
-            transition: opacity 0.5s, transform 0.5s;
-        }
-        [data-reveal].revealed .why-list li { opacity: 1; transform: translateX(0); }
-        [data-reveal].revealed .why-list li:nth-child(1) { transition-delay: 0.1s; }
-        [data-reveal].revealed .why-list li:nth-child(2) { transition-delay: 0.17s; }
-        [data-reveal].revealed .why-list li:nth-child(3) { transition-delay: 0.24s; }
-        [data-reveal].revealed .why-list li:nth-child(4) { transition-delay: 0.31s; }
-        [data-reveal].revealed .why-list li:nth-child(5) { transition-delay: 0.38s; }
-        [data-reveal].revealed .why-list li:nth-child(6) { transition-delay: 0.45s; }
+        /* Image placeholder hover */
+        .img-placeholder { transition: background 0.4s; }
+        .img-placeholder:hover { background: #eaeaea; }
 
-        /* Promise list stagger */
-        .promise-list li {
-            opacity: 0;
-            transform: translateX(-12px);
-            transition: opacity 0.5s, transform 0.5s;
-        }
-        [data-reveal].revealed .promise-list li,
-        [data-stagger].revealed .promise-list li { opacity: 1; transform: translateX(0); }
-        .promise-list li:nth-child(1) { transition-delay: 0.08s; }
-        .promise-list li:nth-child(2) { transition-delay: 0.16s; }
-        .promise-list li:nth-child(3) { transition-delay: 0.24s; }
-        .promise-list li:nth-child(4) { transition-delay: 0.32s; }
-        .promise-list li:nth-child(5) { transition-delay: 0.40s; }
-        .promise-list li:nth-child(6) { transition-delay: 0.48s; }
-
-        /* Smooth scroll indicator */
+        /* Hero scroll pulse */
         @keyframes scrollPulse {
             0%, 100% { opacity: 0.2; transform: scaleY(0.6); }
             50% { opacity: 1; transform: scaleY(1); }
         }
         .hero-scroll span { animation: scrollPulse 2.5s ease-in-out infinite; }
-
-        /* No-motion preference */
-        @media (prefers-reduced-motion: reduce) {
-            [data-reveal], [data-stagger] > *, .divider, 
-            .why-list li, .promise-list li {
-                opacity: 1 !important;
-                transform: none !important;
-                transition: none !important;
-            }
-        }
 
     </style>
 </head>
@@ -622,14 +515,14 @@
 <section class="s-white" id="intro">
     <div class="container">
         <div class="two-col">
-            <div data-reveal="left">
+            <div>
                 <span class="label">Candid &amp; Romantic Storytelling</span>
                 <div class="divider divider-left"></div>
                 <h2>Dorset &amp; Hampshire Wedding&nbsp;Videography</h2>
                 <p>Every wedding tells a unique love story. Our customised videography packages are designed to capture yours, preserving every candid moment and genuine emotion of your special day.</p>
                 <p>From the anticipation of bridal preparations through to the heartfelt ceremony and evening celebrations, we'll document your day discreetly. The result? Authentic moments that make your wedding film uniquely yours.</p>
             </div>
-            <div class="img-placeholder" data-reveal="right"><span>Image</span></div>
+            <div class="img-placeholder"><span>Image</span></div>
         </div>
     </div>
 </section>
@@ -639,7 +532,7 @@
 <section class="s-grey">
     <div class="container">
         <div class="two-col">
-            <div class="img-placeholder" data-reveal="right"><span>Image</span></div>
+            <div class="img-placeholder"><span>Image</span></div>
             <div>
                 <span class="label">Videography</span>
                 <div class="divider divider-left"></div>
@@ -664,7 +557,7 @@
 <!-- ═══ ABOUT ═══ -->
 <section class="s-white">
     <div class="container">
-        <div class="narrow" style="text-align:center;" data-reveal>
+        <div class="narrow" style="text-align:center;">
             <span class="label">About Us</span>
             <div class="divider"></div>
             <h2>Capturing memories that last a&nbsp;lifetime</h2>
@@ -679,7 +572,7 @@
 <section class="s-grey">
     <div class="container">
         <div class="two-col">
-            <div data-reveal="left">
+            <div>
                 <span class="label">Why We're Different</span>
                 <div class="divider divider-left"></div>
                 <h2>Candid Moments, Cinematic&nbsp;Memories</h2>
@@ -688,7 +581,7 @@
                 <p>Based in Bournemouth, we understand wedding day emotions from personal experience. Having edited our own celebration, we know exactly which moments truly matter.</p>
                 <p>Working seamlessly together provides comprehensive coverage across Dorset, Hampshire, and South England.</p>
             </div>
-            <div class="img-placeholder" data-reveal="right"><span>Photo: Ryan and Beth filming</span></div>
+            <div class="img-placeholder"><span>Photo: Ryan and Beth filming</span></div>
         </div>
     </div>
 </section>
@@ -704,7 +597,7 @@
             </div>
             <span style="font-size:14px;color:var(--text-light);">12 Videos</span>
         </div>
-        <div class="gallery-grid" data-stagger>
+        <div class="gallery-grid">
             <div class="gallery-card"><div class="img-placeholder img-placeholder-sm"><span>Video thumbnail</span></div><div class="gallery-caption"><h4>Mr &amp; Mrs Loach</h4></div></div>
             <div class="gallery-card"><div class="img-placeholder img-placeholder-sm"><span>Video thumbnail</span></div><div class="gallery-caption"><h4>Mr &amp; Mrs Dean</h4></div></div>
             <div class="gallery-card"><div class="img-placeholder img-placeholder-sm"><span>Video thumbnail</span></div><div class="gallery-caption"><h4>Mr &amp; Mrs Hubbard</h4></div></div>
@@ -751,13 +644,13 @@
 <!-- ═══ WHY COUPLES CHOOSE US ═══ -->
 <section class="s-white">
     <div class="container">
-        <div style="text-align:center;" data-reveal>
+        <div style="text-align:center;">
             <span class="label">Why Couples Choose Us</span>
             <div class="divider"></div>
             <h2>Trust, connection, and safe&nbsp;hands</h2>
             <p class="narrow" style="margin-bottom:0;">As Dorset and Hampshire's husband and wife wedding videography team, we bring over a decade of experience, genuine passion, and a natural filming style.</p>
         </div>
-        <div class="features-grid" data-stagger>
+        <div class="features-grid">
             <div class="fcard"><h3>Husband &amp; wife&nbsp;team</h3><p>Seamless coordination and dual perspectives. We instinctively understand which moments truly matter.</p></div>
             <div class="fcard"><h3>Natural, candid&nbsp;style</h3><p>No stiff posing or awkward scripts. Just genuine emotions captured as they naturally unfold.</p></div>
             <div class="fcard"><h3>Cinema-quality&nbsp;films</h3><p>4K footage, professional colour grading, crystal-clear audio. Delivered via private gallery and USB gift box.</p></div>
@@ -772,12 +665,12 @@
 <!-- ═══ FAQ ═══ -->
 <section class="s-grey" id="faq">
     <div class="container">
-        <div style="text-align:center;" data-reveal>
+        <div style="text-align:center;">
             <span class="label">FAQs</span>
             <div class="divider"></div>
             <h2>Frequently Asked&nbsp;Questions</h2>
         </div>
-        <div class="faq-list" data-reveal>
+        <div class="faq-list">
             <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">How far in advance should we book? <span class="faq-icon">+</span></button><div class="faq-a"><p>We recommend booking 9-12 months in advance, especially for summer weddings in Dorset and Hampshire. For winter or weekday celebrations, 6-9 months is usually sufficient.</p></div></div>
             <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Do you travel outside Dorset and Hampshire? <span class="faq-icon">+</span></button><div class="faq-a"><p>Yes! We cover all of South England and are available for destination weddings across the UK and internationally.</p></div></div>
             <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">What's your filming style? <span class="faq-icon">+</span></button><div class="faq-a"><p>Natural, candid wedding videography. We document your day as it unfolds rather than staging scenes. You'll barely notice we're there.</p></div></div>
@@ -793,13 +686,13 @@
 <!-- ═══ CONTACT ═══ -->
 <section class="s-white" id="contact">
     <div class="container">
-        <div style="text-align:center;" data-reveal>
+        <div style="text-align:center;">
             <span class="label">Get in Touch</span>
             <div class="divider"></div>
             <h2>Let's discuss your wedding&nbsp;videography</h2>
         </div>
         <div class="contact-grid">
-            <div class="contact-info" data-reveal="left">
+            <div class="contact-info">
                 <p>We'd love to hear about your wedding plans! Whether you're getting married in Dorset, Hampshire, or across South England, we're here to answer your questions.</p>
                 <p>We typically respond within 24 hours and are happy to arrange a call, video chat, or meeting at your convenience.</p>
                 <ul class="contact-details">
@@ -851,16 +744,7 @@
     </div>
 </footer>
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js">
-    // Scroll reveal
-    var revealEls = document.querySelectorAll('[data-reveal], [data-stagger]');
-    if ('IntersectionObserver' in window) {
-        var revealObs = new IntersectionObserver(function(entries) {
-            for (var i = 0; i < entries.length; i++) {
-                if (entries[i].isIntersecting) {
-                    entries[i].target.classList.add('revealed');
-                }
-            }
-        }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
         for (var i = 0; i < revealEls.length; i++) { revealObs.observe(revealEls[i]); }
     } else {
         // Fallback: show everything

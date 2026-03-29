@@ -368,55 +368,9 @@
             margin: 0 0 28px 0;
         }
     
-        /* ─── PREMIUM MOTION ─── */
-        [data-reveal] {
-            opacity: 0;
-            transform: translateY(28px);
-            transition: opacity 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
-                        transform 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-        [data-reveal="left"] { transform: translateX(-32px); }
-        [data-reveal="right"] { transform: translateX(32px); }
-        [data-reveal="scale"] { transform: scale(0.95); }
-        [data-reveal].revealed {
-            opacity: 1;
-            transform: translateY(0) translateX(0) scale(1);
-        }
-
-        /* Stagger children */
-        [data-stagger] > * {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-                        transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-        [data-stagger].revealed > *:nth-child(1) { transition-delay: 0.05s; }
-        [data-stagger].revealed > *:nth-child(2) { transition-delay: 0.12s; }
-        [data-stagger].revealed > *:nth-child(3) { transition-delay: 0.19s; }
-        [data-stagger].revealed > *:nth-child(4) { transition-delay: 0.26s; }
-        [data-stagger].revealed > *:nth-child(5) { transition-delay: 0.33s; }
-        [data-stagger].revealed > *:nth-child(6) { transition-delay: 0.40s; }
-        [data-stagger].revealed > *:nth-child(7) { transition-delay: 0.47s; }
-        [data-stagger].revealed > *:nth-child(8) { transition-delay: 0.54s; }
-        [data-stagger].revealed > *:nth-child(9) { transition-delay: 0.61s; }
-        [data-stagger].revealed > *:nth-child(10) { transition-delay: 0.68s; }
-        [data-stagger].revealed > *:nth-child(11) { transition-delay: 0.75s; }
-        [data-stagger].revealed > *:nth-child(12) { transition-delay: 0.82s; }
-        [data-stagger].revealed > * {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Divider line animation */
-        .divider {
-            width: 0;
-            transition: width 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s;
-        }
-        .revealed .divider,
-        [data-reveal].revealed + .divider,
-        [data-reveal].revealed .divider { width: 48px; }
-
-        /* Button hover fill effect */
+        /* ─── PREMIUM INTERACTIONS ─── */
+        
+        /* Button hover fill */
         .btn-gold, .fbtn, .form-submit {
             position: relative;
             overflow: hidden;
@@ -425,7 +379,7 @@
         .btn-gold::before, .fbtn::before, .form-submit::before {
             content: '';
             position: absolute;
-            top: 0; left: -100%; 
+            top: 0; left: -100%;
             width: 100%; height: 100%;
             background: var(--accent-hover);
             transition: left 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -443,33 +397,8 @@
             box-shadow: 0 12px 36px rgba(0,0,0,0.08);
         }
 
-        /* Image placeholder hover */
-        .img-placeholder {
-            transition: background 0.4s;
-        }
-        .img-placeholder:hover {
-            background: #eaeaea;
-        }
-
-        /* Gallery item cinematic hover */
-        .gallery-card:hover .img-placeholder,
-        .gallery-item:hover .img-placeholder {
-            background: #e0e0e0;
-        }
-
-        /* Smooth label tracking */
-        .label {
-            display: inline-block;
-            transition: letter-spacing 0.4s;
-        }
-        [data-reveal].revealed .label {
-            letter-spacing: 4px;
-        }
-
-        /* Nav link underline animation */
-        .nav-links a {
-            position: relative;
-        }
+        /* Nav link underline */
+        .nav-links a { position: relative; }
         .nav-links a::after {
             content: '';
             position: absolute;
@@ -480,8 +409,8 @@
         }
         .nav-links a:hover::after { width: 100%; }
 
-        /* Testimonial fade transition */
-        .titem, .testimonial-item {
+        /* Testimonial fade */
+        .titem.active, .testimonial-item.active {
             animation: fadeQuote 0.5s ease;
         }
         @keyframes fadeQuote {
@@ -490,56 +419,20 @@
         }
 
         /* FAQ smooth expand */
-        .faq-item, .faq-a, .faq-answer, .faq-cat-body {
-            transition: max-height 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-                        padding 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        .faq-a, .faq-answer, .faq-cat-body {
+            transition: max-height 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
-        /* Why list items stagger on reveal */
-        .why-list li {
-            opacity: 0;
-            transform: translateX(-12px);
-            transition: opacity 0.5s, transform 0.5s;
-        }
-        [data-reveal].revealed .why-list li { opacity: 1; transform: translateX(0); }
-        [data-reveal].revealed .why-list li:nth-child(1) { transition-delay: 0.1s; }
-        [data-reveal].revealed .why-list li:nth-child(2) { transition-delay: 0.17s; }
-        [data-reveal].revealed .why-list li:nth-child(3) { transition-delay: 0.24s; }
-        [data-reveal].revealed .why-list li:nth-child(4) { transition-delay: 0.31s; }
-        [data-reveal].revealed .why-list li:nth-child(5) { transition-delay: 0.38s; }
-        [data-reveal].revealed .why-list li:nth-child(6) { transition-delay: 0.45s; }
+        /* Image placeholder hover */
+        .img-placeholder { transition: background 0.4s; }
+        .img-placeholder:hover { background: #eaeaea; }
 
-        /* Promise list stagger */
-        .promise-list li {
-            opacity: 0;
-            transform: translateX(-12px);
-            transition: opacity 0.5s, transform 0.5s;
-        }
-        [data-reveal].revealed .promise-list li,
-        [data-stagger].revealed .promise-list li { opacity: 1; transform: translateX(0); }
-        .promise-list li:nth-child(1) { transition-delay: 0.08s; }
-        .promise-list li:nth-child(2) { transition-delay: 0.16s; }
-        .promise-list li:nth-child(3) { transition-delay: 0.24s; }
-        .promise-list li:nth-child(4) { transition-delay: 0.32s; }
-        .promise-list li:nth-child(5) { transition-delay: 0.40s; }
-        .promise-list li:nth-child(6) { transition-delay: 0.48s; }
-
-        /* Smooth scroll indicator */
+        /* Hero scroll pulse */
         @keyframes scrollPulse {
             0%, 100% { opacity: 0.2; transform: scaleY(0.6); }
             50% { opacity: 1; transform: scaleY(1); }
         }
         .hero-scroll span { animation: scrollPulse 2.5s ease-in-out infinite; }
-
-        /* No-motion preference */
-        @media (prefers-reduced-motion: reduce) {
-            [data-reveal], [data-stagger] > *, .divider, 
-            .why-list li, .promise-list li {
-                opacity: 1 !important;
-                transform: none !important;
-                transition: none !important;
-            }
-        }
 
     </style>
 </head>
@@ -583,7 +476,7 @@
 <!-- ═══ HERE AT EKO ═══ -->
 <section class="s-white">
     <div class="container">
-        <div class="narrow" style="text-align:center;" data-reveal>
+        <div class="narrow" style="text-align:center;">
             <span class="label">Here at EKO</span>
             <div class="divider"></div>
             <h2>Experience the magic of Dorset and Hampshire's premier husband and wife wedding videography&nbsp;team.</h2>
@@ -606,7 +499,7 @@
                 <p>Our approach is simple: we blend into your celebration, allowing you to be completely present with your loved ones whilst we document the authentic joy, emotion, and connection that makes your day special. The result? A cinematic film that truly feels like your wedding, not a performance.</p>
             </div>
             <div class="two-col-img">
-                <div class="img-placeholder" data-reveal="right"><span>Client image</span></div>
+                <div class="img-placeholder"><span>Client image</span></div>
             </div>
         </div>
     </div>
@@ -618,7 +511,7 @@
     <div class="container">
         <div class="two-col">
             <div class="two-col-img">
-                <div class="img-placeholder" data-reveal="right"><span>Client image</span></div>
+                <div class="img-placeholder"><span>Client image</span></div>
             </div>
             <div class="two-col-text">
                 <span class="label">The EKO Difference</span>
@@ -646,7 +539,7 @@
                 <a href="contact.html" class="btn btn-gold">Get in Touch</a>
             </div>
             <div class="two-col-img">
-                <div class="img-placeholder" data-reveal="right"><span>Client image</span></div>
+                <div class="img-placeholder"><span>Client image</span></div>
             </div>
         </div>
     </div>
@@ -682,7 +575,7 @@
 <!-- ═══ OUR STORY ═══ -->
 <section class="s-white">
     <div class="container">
-        <div class="narrow" style="text-align:center;" data-reveal>
+        <div class="narrow" style="text-align:center;">
             <span class="label">Our Story</span>
             <div class="divider"></div>
             <h2>How it all&nbsp;started</h2>
@@ -696,12 +589,12 @@
 <!-- ═══ WHAT MAKES US DIFFERENT ═══ -->
 <section class="s-grey">
     <div class="container">
-        <div style="text-align:center;" data-reveal>
+        <div style="text-align:center;">
             <span class="label">Our Values</span>
             <div class="divider"></div>
             <h2>What makes us&nbsp;different</h2>
         </div>
-        <div class="diff-grid" data-stagger>
+        <div class="diff-grid">
             <div class="diff-card">
                 <h3>Natural &amp;&nbsp;Unobtrusive</h3>
                 <p>We don't direct or stage your day. Instead, we document it as it naturally unfolds, capturing candid moments that reveal the authentic emotions and connections that make your celebration special.</p>
@@ -730,7 +623,7 @@
 <!-- ═══ WORKING WITH US ═══ -->
 <section class="s-white">
     <div class="container">
-        <div class="narrow" style="text-align:center;" data-reveal>
+        <div class="narrow" style="text-align:center;">
             <span class="label">The Experience</span>
             <div class="divider"></div>
             <h2>Working with&nbsp;us</h2>
@@ -746,12 +639,12 @@
 <!-- ═══ OUR PROMISE ═══ -->
 <section class="s-grey">
     <div class="container">
-        <div style="text-align:center;" data-reveal>
+        <div style="text-align:center;">
             <span class="label">What You Get</span>
             <div class="divider"></div>
             <h2>Our&nbsp;Promise</h2>
         </div>
-        <ul class="promise-list" data-reveal>
+        <ul class="promise-list">
             <li><span class="ck">&#10003;</span> Discreet, professional service throughout your day</li>
             <li><span class="ck">&#10003;</span> Natural, candid filming that captures authentic emotions</li>
             <li><span class="ck">&#10003;</span> Crystal-clear audio of your vows and speeches</li>
@@ -766,7 +659,7 @@
 <!-- ═══ LOACH TESTIMONIAL ═══ -->
 <section class="s-white">
     <div class="container">
-        <div class="pullquote" data-reveal>
+        <div class="pullquote">
             <blockquote>"Ryan and Beth are so friendly, they faded into the background on the day, made us feel at ease throughout, was prompt and professional leading up to it, but most importantly they really captured the essence of the day. The film quality is excellent and the turn around time to get the edited footage back to us was quick. The drone footage also gave the video some context of where we got married which really added to the film. We would 100% recommend them to anyone!!"</blockquote>
             <cite>Mr &amp; Mrs Loach</cite>
         </div>
@@ -787,13 +680,13 @@
 <!-- ═══ CONTACT ═══ -->
 <section class="s-white" id="contact">
     <div class="container">
-        <div style="text-align:center;" data-reveal>
+        <div style="text-align:center;">
             <span class="label">Get in Touch</span>
             <div class="divider"></div>
             <h2>Let's discuss your wedding&nbsp;videography</h2>
         </div>
         <div class="contact-grid">
-            <div class="contact-info" data-reveal="left">
+            <div class="contact-info">
                 <p>We'd love to hear about your wedding plans! Whether you're getting married in Dorset, Hampshire, or across South England, we're here to answer your questions and discuss how we can capture your special day.</p>
                 <p>We typically respond within 24 hours and are happy to arrange a phone call, video chat, or in-person meeting at your convenience.</p>
                 <ul class="contact-details">
@@ -845,16 +738,7 @@
     </div>
 </footer>
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js">
-    // Scroll reveal
-    var revealEls = document.querySelectorAll('[data-reveal], [data-stagger]');
-    if ('IntersectionObserver' in window) {
-        var revealObs = new IntersectionObserver(function(entries) {
-            for (var i = 0; i < entries.length; i++) {
-                if (entries[i].isIntersecting) {
-                    entries[i].target.classList.add('revealed');
-                }
-            }
-        }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
         for (var i = 0; i < revealEls.length; i++) { revealObs.observe(revealEls[i]); }
     } else {
         // Fallback: show everything
