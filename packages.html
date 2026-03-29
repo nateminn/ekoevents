@@ -674,12 +674,12 @@
                 <p>We typically respond within 24 hours and are happy to arrange a phone call, video chat, or in-person meeting at your convenience.</p>
                 <ul class="contact-details">
                     <li><a href="tel:01202059325">01202 059325</a></li>
-                    <li><a href="mailto:info@ekoevents.co.uk">info@ekoevents.co.uk</a></li>
+                    <li><a href="/cdn-cgi/l/email-protection#84edeae2ebc4e1efebe1f2e1eaf0f7aae7ebaaf1ef"><span class="__cf_email__" data-cfemail="fb92959d94bb9e90949e8d9e958f88d59894d58e90">[email&#160;protected]</span></a></li>
                     <li>Based in Bournemouth, UK</li>
                     <li>Covering weddings across Dorset, Hampshire &amp; South England</li>
                 </ul>
             </div>
-            <form onsubmit="event.preventDefault();alert('Message sent!');">
+            <form name="contact" method="POST" data-netlify="true" action="/thank-you.html"><input type="hidden" name="form-name" value="contact">
                 <div class="form-group"><label for="name">Name</label><input type="text" id="name" required></div>
                 <div class="form-group"><label for="email">Email</label><input type="email" id="email" required></div>
                 <div class="form-group"><label for="message">Message</label><textarea id="message" required></textarea></div>
@@ -709,7 +709,7 @@
             </ul>
             <ul class="footer-contact-mini">
                 <li><a href="tel:01202059325">01202 059325</a></li>
-                <li><a href="mailto:info@ekoevents.co.uk">info@ekoevents.co.uk</a></li>
+                <li><a href="/cdn-cgi/l/email-protection#cfa6a1a9a08faaa4a0aab9aaa1bbbce1aca0e1baa4"><span class="__cf_email__" data-cfemail="b2dbdcd4ddf2d7d9ddd7c4d7dcc6c19cd1dd9cc7d9">[email&#160;protected]</span></a></li>
                 <li>Based in Bournemouth, UK</li>
             </ul>
         </div>
@@ -720,24 +720,11 @@
     </div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     // Testimonials
     var tdots = document.querySelectorAll('.testimonial-dot');
     var titems = document.querySelectorAll('.testimonial-item');
     var tcur = 0;
     function tslide(i) {
         for (var j = 0; j < titems.length; j++) titems[j].classList.remove('active');
-        for (var j = 0; j < tdots.length; j++) tdots[j].classList.remove('active');
-        titems[i].classList.add('active');
-        tdots[i].classList.add('active');
-        tcur = i;
-    }
-    for (var j = 0; j < tdots.length; j++) {
-        (function(idx) { tdots[idx].addEventListener('click', function() { tslide(idx); }); })(j);
-    }
-    setInterval(function() { tslide((tcur + 1) % titems.length); }, 6000);
-
-</script>
-
-</body>
-</html>
+        for (var j = 0; j < tdots.length; j++) tdots[j].classLi
