@@ -41,7 +41,24 @@
         {"@type": "ListItem", "position": 3, "name": "New Forest Wedding Venues", "item": "https://www.ekoevents.co.uk/journal/new-forest-wedding-venues.html"}
       ]
     }
-    </script>
+    
+    // Scroll reveal
+    var revealEls = document.querySelectorAll('[data-reveal], [data-stagger]');
+    if ('IntersectionObserver' in window) {
+        var revealObs = new IntersectionObserver(function(entries) {
+            for (var i = 0; i < entries.length; i++) {
+                if (entries[i].isIntersecting) {
+                    entries[i].target.classList.add('revealed');
+                }
+            }
+        }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+        for (var i = 0; i < revealEls.length; i++) { revealObs.observe(revealEls[i]); }
+    } else {
+        // Fallback: show everything
+        for (var i = 0; i < revealEls.length; i++) { revealEls[i].classList.add('revealed'); }
+    }
+
+</script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
@@ -100,6 +117,180 @@
         .footer-bottom{border-top:1px solid rgba(255,255,255,.1);padding-top:20px;display:flex;justify-content:space-between;font-size:12px;flex-wrap:wrap;gap:8px}
         .footer-bottom a{color:rgba(255,255,255,.6);text-decoration:none}.footer-bottom a:hover{color:#fff}
         @media(max-width:768px){.nav-links,.nav-hitched{display:none}.nav-toggle{display:flex}.nav-links.open{display:flex;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:var(--white);padding:20px;gap:16px;box-shadow:0 8px 20px rgba(0,0,0,.08)}.related-grid{grid-template-columns:1fr;max-width:400px}}
+    
+        /* ─── PREMIUM MOTION ─── */
+        [data-reveal] {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+                        transform 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        [data-reveal="left"] { transform: translateX(-32px); }
+        [data-reveal="right"] { transform: translateX(32px); }
+        [data-reveal="scale"] { transform: scale(0.95); }
+        [data-reveal].revealed {
+            opacity: 1;
+            transform: translateY(0) translateX(0) scale(1);
+        }
+
+        /* Stagger children */
+        [data-stagger] > * {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        [data-stagger].revealed > *:nth-child(1) { transition-delay: 0.05s; }
+        [data-stagger].revealed > *:nth-child(2) { transition-delay: 0.12s; }
+        [data-stagger].revealed > *:nth-child(3) { transition-delay: 0.19s; }
+        [data-stagger].revealed > *:nth-child(4) { transition-delay: 0.26s; }
+        [data-stagger].revealed > *:nth-child(5) { transition-delay: 0.33s; }
+        [data-stagger].revealed > *:nth-child(6) { transition-delay: 0.40s; }
+        [data-stagger].revealed > *:nth-child(7) { transition-delay: 0.47s; }
+        [data-stagger].revealed > *:nth-child(8) { transition-delay: 0.54s; }
+        [data-stagger].revealed > *:nth-child(9) { transition-delay: 0.61s; }
+        [data-stagger].revealed > *:nth-child(10) { transition-delay: 0.68s; }
+        [data-stagger].revealed > *:nth-child(11) { transition-delay: 0.75s; }
+        [data-stagger].revealed > *:nth-child(12) { transition-delay: 0.82s; }
+        [data-stagger].revealed > * {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Divider line animation */
+        .divider {
+            width: 0;
+            transition: width 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s;
+        }
+        .revealed .divider,
+        [data-reveal].revealed + .divider,
+        [data-reveal].revealed .divider { width: 48px; }
+
+        /* Button hover fill effect */
+        .btn-gold, .fbtn, .form-submit {
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        .btn-gold::before, .fbtn::before, .form-submit::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%; 
+            width: 100%; height: 100%;
+            background: var(--accent-hover);
+            transition: left 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            z-index: -1;
+        }
+        .btn-gold:hover::before, .fbtn:hover::before, .form-submit:hover::before { left: 0; }
+
+        /* Card hover lift */
+        .fcard, .diff-card, .feature-card, .package-card, .card, .related-card {
+            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        box-shadow 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .fcard:hover, .diff-card:hover, .feature-card:hover, .card:hover, .related-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 36px rgba(0,0,0,0.08);
+        }
+
+        /* Image placeholder hover */
+        .img-placeholder {
+            transition: background 0.4s;
+        }
+        .img-placeholder:hover {
+            background: #eaeaea;
+        }
+
+        /* Gallery item cinematic hover */
+        .gallery-card:hover .img-placeholder,
+        .gallery-item:hover .img-placeholder {
+            background: #e0e0e0;
+        }
+
+        /* Smooth label tracking */
+        .label {
+            display: inline-block;
+            transition: letter-spacing 0.4s;
+        }
+        [data-reveal].revealed .label {
+            letter-spacing: 4px;
+        }
+
+        /* Nav link underline animation */
+        .nav-links a {
+            position: relative;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px; left: 0;
+            width: 0; height: 1px;
+            background: var(--accent);
+            transition: width 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .nav-links a:hover::after { width: 100%; }
+
+        /* Testimonial fade transition */
+        .titem, .testimonial-item {
+            animation: fadeQuote 0.5s ease;
+        }
+        @keyframes fadeQuote {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* FAQ smooth expand */
+        .faq-item, .faq-a, .faq-answer, .faq-cat-body {
+            transition: max-height 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        padding 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        /* Why list items stagger on reveal */
+        .why-list li {
+            opacity: 0;
+            transform: translateX(-12px);
+            transition: opacity 0.5s, transform 0.5s;
+        }
+        [data-reveal].revealed .why-list li { opacity: 1; transform: translateX(0); }
+        [data-reveal].revealed .why-list li:nth-child(1) { transition-delay: 0.1s; }
+        [data-reveal].revealed .why-list li:nth-child(2) { transition-delay: 0.17s; }
+        [data-reveal].revealed .why-list li:nth-child(3) { transition-delay: 0.24s; }
+        [data-reveal].revealed .why-list li:nth-child(4) { transition-delay: 0.31s; }
+        [data-reveal].revealed .why-list li:nth-child(5) { transition-delay: 0.38s; }
+        [data-reveal].revealed .why-list li:nth-child(6) { transition-delay: 0.45s; }
+
+        /* Promise list stagger */
+        .promise-list li {
+            opacity: 0;
+            transform: translateX(-12px);
+            transition: opacity 0.5s, transform 0.5s;
+        }
+        [data-reveal].revealed .promise-list li,
+        [data-stagger].revealed .promise-list li { opacity: 1; transform: translateX(0); }
+        .promise-list li:nth-child(1) { transition-delay: 0.08s; }
+        .promise-list li:nth-child(2) { transition-delay: 0.16s; }
+        .promise-list li:nth-child(3) { transition-delay: 0.24s; }
+        .promise-list li:nth-child(4) { transition-delay: 0.32s; }
+        .promise-list li:nth-child(5) { transition-delay: 0.40s; }
+        .promise-list li:nth-child(6) { transition-delay: 0.48s; }
+
+        /* Smooth scroll indicator */
+        @keyframes scrollPulse {
+            0%, 100% { opacity: 0.2; transform: scaleY(0.6); }
+            50% { opacity: 1; transform: scaleY(1); }
+        }
+        .hero-scroll span { animation: scrollPulse 2.5s ease-in-out infinite; }
+
+        /* No-motion preference */
+        @media (prefers-reduced-motion: reduce) {
+            [data-reveal], [data-stagger] > *, .divider, 
+            .why-list li, .promise-list li {
+                opacity: 1 !important;
+                transform: none !important;
+                transition: none !important;
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -111,7 +302,7 @@
 </div></nav>
 <section class="article-hero"><div class="container">
     <span class="tag">Venues</span>
-    <h1>New Forest Wedding Venues: A Videographer's Perspective</h1>
+    <h1>New Forest Wedding Venues: A Videographer's&nbsp;Perspective</h1>
     <p class="article-meta">4 February 2026 <span>|</span> 9 min read <span>|</span> EKO Wedding Films</p>
 </div></section>
 <article class="article">
@@ -120,7 +311,7 @@
 
     <p>As <a href="../about.html">wedding videographers based in Bournemouth</a>, we film in the New Forest regularly and have come to understand which venues offer the best combination of natural beauty, practical facilities, and cinematic potential. This guide shares what we have learned from years behind the camera.</p>
 
-    <h2>Why the New Forest is exceptional for wedding films</h2>
+    <h2>Why the New Forest is exceptional for wedding&nbsp;films</h2>
 
     <p>The New Forest works for videography in ways that many venues simply cannot match. The woodland canopy creates naturally soft, diffused light throughout the day, which is the most flattering quality of light for filming people. There is no harsh overhead sun, no squinting, and no unflattering shadows. The light shifts gently as it filters through leaves, creating a warm, organic quality in every frame.</p>
 
@@ -130,7 +321,7 @@
 
     <div class="img-box"><span>Image: New Forest woodland</span></div>
 
-    <h2>Our top New Forest wedding venues</h2>
+    <h2>Our top New Forest wedding&nbsp;venues</h2>
 
     <h3><a href="https://www.burleymanor.com/weddings/" target="_blank" rel="noopener">Burley Manor</a></h3>
     <p>Set within the heart of the New Forest, Burley Manor combines country house elegance with the wild beauty of the surrounding woodland. The manor lawns work beautifully for outdoor ceremonies, framed by mature trees and the occasional New Forest pony in the background. For videography, the forest paths surrounding the manor provide endless options for couple portraits that feel natural and unposed. The dappled light through the tree canopy creates footage with a rich, cinematic quality that is hard to find elsewhere. Evening receptions benefit from the manor's warm interiors, with candlelight creating an intimate atmosphere on film.</p>
@@ -144,53 +335,53 @@
     <h3><a href="https://www.balmerlawnhotel.com/weddings/" target="_blank" rel="noopener">Balmer Lawn Hotel</a></h3>
     <p>Overlooking Balmer Lawn in Brockenhurst, this venue offers sweeping views of open New Forest heathland. The contrast between the hotel's traditional interiors and the wild, open landscape creates visual variety in wedding films. The lawn area is popular for outdoor ceremonies, and the heath beyond provides a dramatic backdrop for golden hour portraits. On clear evenings, the sunset over the Forest creates some of the most beautiful natural lighting we film in all year.</p>
 
-    <h3>The Master Builder's at Buckler's Hard</h3>
+    <h3>The Master Builder's at Buckler's&nbsp;Hard</h3>
     <p>Situated on the banks of the Beaulieu River, The Master Builder's offers a unique combination of Forest and waterside settings. The riverside location adds a different dimension to New Forest wedding films, with boats, reflections, and the gentle movement of the river providing visual interest throughout the day. The 18th-century building has character and warmth that films beautifully by candlelight in the evening.</p>
 
     <h3><a href="https://www.beaulieu.co.uk/weddings/" target="_blank" rel="noopener">Beaulieu</a></h3>
     <p>The Beaulieu estate offers multiple settings within a single location: the historic Abbey, the Palace House, and the surrounding gardens and parkland. This variety is a significant advantage for wedding films, as it allows us to capture a wide range of looks and moods without travelling between locations. The Abbey is particularly atmospheric for ceremonies, with its vaulted ceilings and ancient stone creating a sense of gravitas that translates powerfully on film.</p>
 
-    <div class="cta-box">
+    <div class="cta-box" data-reveal>
         <p>We have filmed at venues across the New Forest and know the light, the logistics, and the best spots for every time of day. <a href="../packages.html">View our packages</a> or get in touch to discuss your plans.</p>
         <a href="../contact.html">Check our availability &rarr;</a>
     </div>
 
-    <h2>Practical tips for New Forest weddings on film</h2>
+    <h2>Practical tips for New Forest weddings on&nbsp;film</h2>
 
-    <h3>Light and timing</h3>
+    <h3>Light and&nbsp;timing</h3>
     <p>The Forest canopy affects golden hour timing. In summer, the trees block low-angle sunlight earlier than at open venues, so the best portrait light often comes 60-90 minutes before sunset rather than the final 30 minutes. We plan around this so you get the most from the available light without feeling rushed.</p>
 
-    <h3>Weather contingency</h3>
+    <h3>Weather&nbsp;contingency</h3>
     <p>The Forest is beautiful in every season and every weather condition. Rain in the Forest creates a moody, atmospheric quality that can produce some of the most memorable wedding footage. We come prepared with protective equipment for both us and our cameras, so weather never stops us filming.</p>
 
     <h3>Wildlife</h3>
     <p>New Forest ponies, donkeys, and cattle roam freely and occasionally wander into shot. Rather than seeing this as a disruption, we treat it as an opportunity. Some of our most shared footage features ponies grazing peacefully in the background during outdoor ceremonies. It is one of those unscripted moments that makes a wedding film genuinely unique.</p>
 
-    <h3>Drone considerations</h3>
+    <h3>Drone&nbsp;considerations</h3>
     <p>Drone filming in the New Forest is subject to specific regulations. Parts of the National Park fall within restricted airspace, and some venues have their own drone policies. We handle all of this in advance, securing any necessary permissions and identifying the best launch points for aerial footage.</p>
 
-    <h2>Choosing your New Forest venue</h2>
+    <h2>Choosing your New Forest&nbsp;venue</h2>
 
     <p>The right venue depends on what you want from your day. If you want woodland intimacy, Burley Manor or Carey's Manor deliver. If you want architectural drama, Rhinefield House is hard to beat. If you want waterside atmosphere, The Master Builder's is unique.</p>
 
     <p>Whatever you choose, the New Forest itself is the real star. Its ancient trees, wild ponies, and constantly shifting light create a natural backdrop that elevates every wedding film we capture here.</p>
 
-    <div class="cta-box">
+    <div class="cta-box" data-reveal>
         <p>Planning a New Forest wedding? We would love to discuss how we can capture your day.</p>
         <a href="../contact.html">Contact us &rarr;</a>
     </div>
 
 </article>
 <section class="related"><div class="container">
-    <div class="related-heading"><h2>More from the Journal</h2></div>
-    <div class="related-grid">
+    <div class="related-heading"><h2>More from the&nbsp;Journal</h2></div>
+    <div class="related-grid" data-stagger>
         <div class="related-card"><div class="card-img"><span>Image</span></div><div class="card-body"><p>Venues</p><h4><a href="best-wedding-venues-dorset-2026.html">12 Best Wedding Venues in Dorset for 2026</a></h4></div></div>
         <div class="related-card"><div class="card-img"><span>Image</span></div><div class="card-body"><p>Venues</p><h4><a href="hampshire-wedding-venues-on-film.html">10 Hampshire Wedding Venues on Film</a></h4></div></div>
         <div class="related-card"><div class="card-img"><span>Image</span></div><div class="card-body"><p>Guide</p><h4><a href="coastal-wedding-videography-dorset-hampshire.html">Coastal Wedding Videography Guide</a></h4></div></div>
     </div>
 </div></section>
 <section class="cta-band"><div class="container">
-    <h2>Planning a New Forest wedding?</h2>
+    <h2>Planning a New Forest&nbsp;wedding?</h2>
     <p>We know the Forest venues intimately. Let us help you plan how your day will look on film.</p>
     <a href="../contact.html" class="btn">Get in Touch</a>
 </div></section>
@@ -209,16 +400,9 @@
             </ul>
             <ul class="footer-mini">
                 <li><a href="tel:01202059325">01202 059325</a></li>
-                <li><a href="mailto:info@ekoevents.co.uk">info@ekoevents.co.uk</a></li>
+                <li><a href="/cdn-cgi/l/email-protection#a6cfc8c0c9e6c3cdc9c3d0c3c8d2d588c5c988d3cd"><span class="__cf_email__" data-cfemail="aec7c0c8c1eecbc5c1cbd8cbc0dadd80cdc180dbc5">[email&#160;protected]</span></a></li>
                 <li>Based in Bournemouth, UK</li>
             </ul>
         </div>
         <div class="footer-bottom">
-            <span>EKO Events Limited. 2026. Company Number: 13557941</span>
-            <a href="privacy-policy.html">Privacy Policy</a>
-        </div>
-    </div>
-</footer>
-
-</body>
-</html>
+            <span>EKO Events Limited. 2026. Company 

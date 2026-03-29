@@ -41,7 +41,24 @@
         {"@type": "ListItem", "position": 3, "name": "Do You Need a Wedding Videographer", "item": "https://www.ekoevents.co.uk/journal/do-you-need-a-wedding-videographer.html"}
       ]
     }
-    </script>
+    
+    // Scroll reveal
+    var revealEls = document.querySelectorAll('[data-reveal], [data-stagger]');
+    if ('IntersectionObserver' in window) {
+        var revealObs = new IntersectionObserver(function(entries) {
+            for (var i = 0; i < entries.length; i++) {
+                if (entries[i].isIntersecting) {
+                    entries[i].target.classList.add('revealed');
+                }
+            }
+        }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+        for (var i = 0; i < revealEls.length; i++) { revealObs.observe(revealEls[i]); }
+    } else {
+        // Fallback: show everything
+        for (var i = 0; i < revealEls.length; i++) { revealEls[i].classList.add('revealed'); }
+    }
+
+</script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
@@ -100,6 +117,180 @@
         .footer-bottom{border-top:1px solid rgba(255,255,255,.1);padding-top:20px;display:flex;justify-content:space-between;font-size:12px;flex-wrap:wrap;gap:8px}
         .footer-bottom a{color:rgba(255,255,255,.6);text-decoration:none}.footer-bottom a:hover{color:#fff}
         @media(max-width:768px){.nav-links,.nav-hitched{display:none}.nav-toggle{display:flex}.nav-links.open{display:flex;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:var(--white);padding:20px;gap:16px;box-shadow:0 8px 20px rgba(0,0,0,.08)}.related-grid{grid-template-columns:1fr;max-width:400px}}
+    
+        /* ─── PREMIUM MOTION ─── */
+        [data-reveal] {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+                        transform 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        [data-reveal="left"] { transform: translateX(-32px); }
+        [data-reveal="right"] { transform: translateX(32px); }
+        [data-reveal="scale"] { transform: scale(0.95); }
+        [data-reveal].revealed {
+            opacity: 1;
+            transform: translateY(0) translateX(0) scale(1);
+        }
+
+        /* Stagger children */
+        [data-stagger] > * {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        [data-stagger].revealed > *:nth-child(1) { transition-delay: 0.05s; }
+        [data-stagger].revealed > *:nth-child(2) { transition-delay: 0.12s; }
+        [data-stagger].revealed > *:nth-child(3) { transition-delay: 0.19s; }
+        [data-stagger].revealed > *:nth-child(4) { transition-delay: 0.26s; }
+        [data-stagger].revealed > *:nth-child(5) { transition-delay: 0.33s; }
+        [data-stagger].revealed > *:nth-child(6) { transition-delay: 0.40s; }
+        [data-stagger].revealed > *:nth-child(7) { transition-delay: 0.47s; }
+        [data-stagger].revealed > *:nth-child(8) { transition-delay: 0.54s; }
+        [data-stagger].revealed > *:nth-child(9) { transition-delay: 0.61s; }
+        [data-stagger].revealed > *:nth-child(10) { transition-delay: 0.68s; }
+        [data-stagger].revealed > *:nth-child(11) { transition-delay: 0.75s; }
+        [data-stagger].revealed > *:nth-child(12) { transition-delay: 0.82s; }
+        [data-stagger].revealed > * {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Divider line animation */
+        .divider {
+            width: 0;
+            transition: width 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s;
+        }
+        .revealed .divider,
+        [data-reveal].revealed + .divider,
+        [data-reveal].revealed .divider { width: 48px; }
+
+        /* Button hover fill effect */
+        .btn-gold, .fbtn, .form-submit {
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        .btn-gold::before, .fbtn::before, .form-submit::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%; 
+            width: 100%; height: 100%;
+            background: var(--accent-hover);
+            transition: left 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            z-index: -1;
+        }
+        .btn-gold:hover::before, .fbtn:hover::before, .form-submit:hover::before { left: 0; }
+
+        /* Card hover lift */
+        .fcard, .diff-card, .feature-card, .package-card, .card, .related-card {
+            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        box-shadow 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .fcard:hover, .diff-card:hover, .feature-card:hover, .card:hover, .related-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 36px rgba(0,0,0,0.08);
+        }
+
+        /* Image placeholder hover */
+        .img-placeholder {
+            transition: background 0.4s;
+        }
+        .img-placeholder:hover {
+            background: #eaeaea;
+        }
+
+        /* Gallery item cinematic hover */
+        .gallery-card:hover .img-placeholder,
+        .gallery-item:hover .img-placeholder {
+            background: #e0e0e0;
+        }
+
+        /* Smooth label tracking */
+        .label {
+            display: inline-block;
+            transition: letter-spacing 0.4s;
+        }
+        [data-reveal].revealed .label {
+            letter-spacing: 4px;
+        }
+
+        /* Nav link underline animation */
+        .nav-links a {
+            position: relative;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px; left: 0;
+            width: 0; height: 1px;
+            background: var(--accent);
+            transition: width 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .nav-links a:hover::after { width: 100%; }
+
+        /* Testimonial fade transition */
+        .titem, .testimonial-item {
+            animation: fadeQuote 0.5s ease;
+        }
+        @keyframes fadeQuote {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* FAQ smooth expand */
+        .faq-item, .faq-a, .faq-answer, .faq-cat-body {
+            transition: max-height 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        padding 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        /* Why list items stagger on reveal */
+        .why-list li {
+            opacity: 0;
+            transform: translateX(-12px);
+            transition: opacity 0.5s, transform 0.5s;
+        }
+        [data-reveal].revealed .why-list li { opacity: 1; transform: translateX(0); }
+        [data-reveal].revealed .why-list li:nth-child(1) { transition-delay: 0.1s; }
+        [data-reveal].revealed .why-list li:nth-child(2) { transition-delay: 0.17s; }
+        [data-reveal].revealed .why-list li:nth-child(3) { transition-delay: 0.24s; }
+        [data-reveal].revealed .why-list li:nth-child(4) { transition-delay: 0.31s; }
+        [data-reveal].revealed .why-list li:nth-child(5) { transition-delay: 0.38s; }
+        [data-reveal].revealed .why-list li:nth-child(6) { transition-delay: 0.45s; }
+
+        /* Promise list stagger */
+        .promise-list li {
+            opacity: 0;
+            transform: translateX(-12px);
+            transition: opacity 0.5s, transform 0.5s;
+        }
+        [data-reveal].revealed .promise-list li,
+        [data-stagger].revealed .promise-list li { opacity: 1; transform: translateX(0); }
+        .promise-list li:nth-child(1) { transition-delay: 0.08s; }
+        .promise-list li:nth-child(2) { transition-delay: 0.16s; }
+        .promise-list li:nth-child(3) { transition-delay: 0.24s; }
+        .promise-list li:nth-child(4) { transition-delay: 0.32s; }
+        .promise-list li:nth-child(5) { transition-delay: 0.40s; }
+        .promise-list li:nth-child(6) { transition-delay: 0.48s; }
+
+        /* Smooth scroll indicator */
+        @keyframes scrollPulse {
+            0%, 100% { opacity: 0.2; transform: scaleY(0.6); }
+            50% { opacity: 1; transform: scaleY(1); }
+        }
+        .hero-scroll span { animation: scrollPulse 2.5s ease-in-out infinite; }
+
+        /* No-motion preference */
+        @media (prefers-reduced-motion: reduce) {
+            [data-reveal], [data-stagger] > *, .divider, 
+            .why-list li, .promise-list li {
+                opacity: 1 !important;
+                transform: none !important;
+                transition: none !important;
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -111,7 +302,7 @@
 </div></nav>
 <section class="article-hero"><div class="container">
     <span class="tag">Tips</span>
-    <h1>Do You Really Need a Wedding Videographer?</h1>
+    <h1>Do You Really Need a Wedding&nbsp;Videographer?</h1>
     <p class="article-meta">20 January 2026 <span>|</span> 8 min read <span>|</span> EKO Wedding Films</p>
 </div></section>
 <article class="article">
@@ -122,13 +313,13 @@
 
     <p>This is not a sales pitch. It is an honest look at what wedding videography actually captures that nothing else can, and why so many couples say it was the single best investment they made on their wedding day.</p>
 
-    <h2>1. Your wedding day goes faster than you think</h2>
+    <h2>1. Your wedding day goes faster than you&nbsp;think</h2>
 
     <p>Every couple says the same thing afterwards: it went so fast. Months of planning, and suddenly it is over in what feels like minutes. The adrenaline, the emotion, the constant movement between moments means you experience your wedding in fragments. The ceremony is a blur of nerves and joy. The speeches pass in a haze of laughter and tears. The evening becomes a montage of dancing and hugging.</p>
 
     <p>A wedding film gives you back the full experience. It lets you sit down, take a breath, and actually watch your day unfold at normal speed. You see the moments you missed. You hear the words you were too nervous to absorb. You experience your wedding the way your guests did.</p>
 
-    <h2>2. Photographs cannot capture sound</h2>
+    <h2>2. Photographs cannot capture&nbsp;sound</h2>
 
     <p>This is the fundamental difference between photography and videography, and it matters more than most people expect. A photograph of your partner saying their vows is beautiful. But hearing their voice crack with emotion? Hearing the sharp intake of breath before the ring goes on? Hearing your guests laugh at an unscripted joke during the ceremony?</p>
 
@@ -136,42 +327,42 @@
 
     <div class="img-box"><span>Image</span></div>
 
-    <h2>3. The speeches deserve to be heard, not just seen</h2>
+    <h2>3. The speeches deserve to be heard, not just&nbsp;seen</h2>
 
     <p>Your dad spent three months writing that speech. Your best friend rehearsed theirs in the mirror for weeks. The best man pulled together stories that had the room in tears of laughter. These moments are performances, crafted specifically for this one day, and they will never be repeated.</p>
 
     <p>A photograph of someone standing at a microphone captures the fact that a speech happened. A film preserves exactly what was said, how it was said, and how the room reacted. It is the difference between a memory of the event and the event itself.</p>
 
-    <h2>4. Movement tells a different story</h2>
+    <h2>4. Movement tells a different&nbsp;story</h2>
 
     <p>A photograph of a first dance is a beautiful still moment. A film of a first dance captures the gentle sway, the whispered conversation, the moment one of you steps on the other's foot and both of you laugh. It captures the song. It captures the way the room watches.</p>
 
     <p>The same applies throughout your day. The way your dress moves as you walk down the aisle. The look your partner gives you when they first see you. The spontaneous group dance that erupts during the evening. These are moments defined by motion, and they lose their essence when frozen in a single frame.</p>
 
-    <h2>5. You will want to share it with people who were not there</h2>
+    <h2>5. You will want to share it with people who were not&nbsp;there</h2>
 
     <p>Grandparents who could not travel. Friends abroad who could not make the journey. Future children who were not yet born. Your wedding film becomes a window into this day for people who were not present but who matter deeply to you.</p>
 
     <p>And unlike asking someone to scroll through hundreds of photographs, a five-minute highlight film tells the complete story of your day in a way that is engaging, emotional, and easy to share.</p>
 
-    <h2>6. The number one wedding regret is not hiring a videographer</h2>
+    <h2>6. The number one wedding regret is not hiring a&nbsp;videographer</h2>
 
     <p>Surveys from Hitched, Bridebook, and wedding planning platforms consistently show the same result: among couples who did not hire a wedding videographer, it is their most common regret. Not the flowers. Not the favours. Not the seating plan. The video.</p>
 
     <p>The reason is simple. On the day, videography feels like a luxury. A year later, when you want to relive the emotion of your ceremony or hear your vows again, it feels essential.</p>
 
-    <h2>7. Your film becomes more valuable every year</h2>
+    <h2>7. Your film becomes more valuable every&nbsp;year</h2>
 
     <p>This is the part that is hardest to appreciate in advance but becomes most apparent over time. Your wedding film is not just a record of a single day. It is a record of the people in your life at that moment. The way your parents looked. The way your grandparents laughed. The friends who surrounded you.</p>
 
     <p>Five years later, you rewatch it and notice things you missed on the day. Ten years later, it brings back emotions you had forgotten. Twenty years later, it becomes one of the most treasured things you own. It is a family heirloom that grows in value with every anniversary.</p>
 
-    <div class="cta-box">
+    <div class="cta-box" data-reveal>
         <p>Our <a href="../packages.html">ceremony-only package</a> starts at just £500. Full-day coverage from £1,650. Every package is designed to preserve the moments that matter most.</p>
         <a href="../contact.html">Discuss your wedding &rarr;</a>
     </div>
 
-    <h2>But what if we are camera-shy?</h2>
+    <h2>But what if we are&nbsp;camera-shy?</h2>
 
     <p>This is one of the most common concerns we hear, and we understand it completely. Nobody wants to feel like they are performing for a camera on their wedding day.</p>
 
@@ -181,15 +372,15 @@
 
 </article>
 <section class="related"><div class="container">
-    <div class="related-heading"><h2>More from the Journal</h2></div>
-    <div class="related-grid">
+    <div class="related-heading"><h2>More from the&nbsp;Journal</h2></div>
+    <div class="related-grid" data-stagger>
         <div class="related-card"><div class="card-img"><span>Image</span></div><div class="card-body"><p>Tips</p><h4><a href="wedding-videographer-cost-uk.html">How Much Does a Wedding Videographer Cost?</a></h4></div></div>
         <div class="related-card"><div class="card-img"><span>Image</span></div><div class="card-body"><p>Tips</p><h4><a href="wedding-planning-timeline.html">Your Complete Wedding Planning Timeline</a></h4></div></div>
         <div class="related-card"><div class="card-img"><span>Image</span></div><div class="card-body"><p>Venues</p><h4><a href="best-wedding-venues-dorset-2026.html">12 Best Wedding Venues in Dorset for 2026</a></h4></div></div>
     </div>
 </div></section>
 <section class="cta-band"><div class="container">
-    <h2>Ready to preserve your story?</h2>
+    <h2>Ready to preserve your&nbsp;story?</h2>
     <p>Let us capture the moments that photographs alone cannot preserve.</p>
     <a href="../contact.html" class="btn">Get in Touch</a>
 </div></section>
@@ -208,16 +399,9 @@
             </ul>
             <ul class="footer-mini">
                 <li><a href="tel:01202059325">01202 059325</a></li>
-                <li><a href="mailto:info@ekoevents.co.uk">info@ekoevents.co.uk</a></li>
+                <li><a href="/cdn-cgi/l/email-protection#d0b9beb6bf90b5bbbfb5a6b5bea4a3feb3bffea5bb"><span class="__cf_email__" data-cfemail="80e9eee6efc0e5ebefe5f6e5eef4f3aee3efaef5eb">[email&#160;protected]</span></a></li>
                 <li>Based in Bournemouth, UK</li>
             </ul>
         </div>
         <div class="footer-bottom">
-            <span>EKO Events Limited. 2026. Company Number: 13557941</span>
-            <a href="privacy-policy.html">Privacy Policy</a>
-        </div>
-    </div>
-</footer>
-
-</body>
-</html>
+            <span>EKO Events Limited. 2026. Company 

@@ -307,6 +307,180 @@
 
         
         
+    
+        /* ─── PREMIUM MOTION ─── */
+        [data-reveal] {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+                        transform 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        [data-reveal="left"] { transform: translateX(-32px); }
+        [data-reveal="right"] { transform: translateX(32px); }
+        [data-reveal="scale"] { transform: scale(0.95); }
+        [data-reveal].revealed {
+            opacity: 1;
+            transform: translateY(0) translateX(0) scale(1);
+        }
+
+        /* Stagger children */
+        [data-stagger] > * {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        [data-stagger].revealed > *:nth-child(1) { transition-delay: 0.05s; }
+        [data-stagger].revealed > *:nth-child(2) { transition-delay: 0.12s; }
+        [data-stagger].revealed > *:nth-child(3) { transition-delay: 0.19s; }
+        [data-stagger].revealed > *:nth-child(4) { transition-delay: 0.26s; }
+        [data-stagger].revealed > *:nth-child(5) { transition-delay: 0.33s; }
+        [data-stagger].revealed > *:nth-child(6) { transition-delay: 0.40s; }
+        [data-stagger].revealed > *:nth-child(7) { transition-delay: 0.47s; }
+        [data-stagger].revealed > *:nth-child(8) { transition-delay: 0.54s; }
+        [data-stagger].revealed > *:nth-child(9) { transition-delay: 0.61s; }
+        [data-stagger].revealed > *:nth-child(10) { transition-delay: 0.68s; }
+        [data-stagger].revealed > *:nth-child(11) { transition-delay: 0.75s; }
+        [data-stagger].revealed > *:nth-child(12) { transition-delay: 0.82s; }
+        [data-stagger].revealed > * {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Divider line animation */
+        .divider {
+            width: 0;
+            transition: width 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s;
+        }
+        .revealed .divider,
+        [data-reveal].revealed + .divider,
+        [data-reveal].revealed .divider { width: 48px; }
+
+        /* Button hover fill effect */
+        .btn-gold, .fbtn, .form-submit {
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        .btn-gold::before, .fbtn::before, .form-submit::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%; 
+            width: 100%; height: 100%;
+            background: var(--accent-hover);
+            transition: left 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            z-index: -1;
+        }
+        .btn-gold:hover::before, .fbtn:hover::before, .form-submit:hover::before { left: 0; }
+
+        /* Card hover lift */
+        .fcard, .diff-card, .feature-card, .package-card, .card, .related-card {
+            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        box-shadow 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .fcard:hover, .diff-card:hover, .feature-card:hover, .card:hover, .related-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 36px rgba(0,0,0,0.08);
+        }
+
+        /* Image placeholder hover */
+        .img-placeholder {
+            transition: background 0.4s;
+        }
+        .img-placeholder:hover {
+            background: #eaeaea;
+        }
+
+        /* Gallery item cinematic hover */
+        .gallery-card:hover .img-placeholder,
+        .gallery-item:hover .img-placeholder {
+            background: #e0e0e0;
+        }
+
+        /* Smooth label tracking */
+        .label {
+            display: inline-block;
+            transition: letter-spacing 0.4s;
+        }
+        [data-reveal].revealed .label {
+            letter-spacing: 4px;
+        }
+
+        /* Nav link underline animation */
+        .nav-links a {
+            position: relative;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px; left: 0;
+            width: 0; height: 1px;
+            background: var(--accent);
+            transition: width 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .nav-links a:hover::after { width: 100%; }
+
+        /* Testimonial fade transition */
+        .titem, .testimonial-item {
+            animation: fadeQuote 0.5s ease;
+        }
+        @keyframes fadeQuote {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* FAQ smooth expand */
+        .faq-item, .faq-a, .faq-answer, .faq-cat-body {
+            transition: max-height 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        padding 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        /* Why list items stagger on reveal */
+        .why-list li {
+            opacity: 0;
+            transform: translateX(-12px);
+            transition: opacity 0.5s, transform 0.5s;
+        }
+        [data-reveal].revealed .why-list li { opacity: 1; transform: translateX(0); }
+        [data-reveal].revealed .why-list li:nth-child(1) { transition-delay: 0.1s; }
+        [data-reveal].revealed .why-list li:nth-child(2) { transition-delay: 0.17s; }
+        [data-reveal].revealed .why-list li:nth-child(3) { transition-delay: 0.24s; }
+        [data-reveal].revealed .why-list li:nth-child(4) { transition-delay: 0.31s; }
+        [data-reveal].revealed .why-list li:nth-child(5) { transition-delay: 0.38s; }
+        [data-reveal].revealed .why-list li:nth-child(6) { transition-delay: 0.45s; }
+
+        /* Promise list stagger */
+        .promise-list li {
+            opacity: 0;
+            transform: translateX(-12px);
+            transition: opacity 0.5s, transform 0.5s;
+        }
+        [data-reveal].revealed .promise-list li,
+        [data-stagger].revealed .promise-list li { opacity: 1; transform: translateX(0); }
+        .promise-list li:nth-child(1) { transition-delay: 0.08s; }
+        .promise-list li:nth-child(2) { transition-delay: 0.16s; }
+        .promise-list li:nth-child(3) { transition-delay: 0.24s; }
+        .promise-list li:nth-child(4) { transition-delay: 0.32s; }
+        .promise-list li:nth-child(5) { transition-delay: 0.40s; }
+        .promise-list li:nth-child(6) { transition-delay: 0.48s; }
+
+        /* Smooth scroll indicator */
+        @keyframes scrollPulse {
+            0%, 100% { opacity: 0.2; transform: scaleY(0.6); }
+            50% { opacity: 1; transform: scaleY(1); }
+        }
+        .hero-scroll span { animation: scrollPulse 2.5s ease-in-out infinite; }
+
+        /* No-motion preference */
+        @media (prefers-reduced-motion: reduce) {
+            [data-reveal], [data-stagger] > *, .divider, 
+            .why-list li, .promise-list li {
+                opacity: 1 !important;
+                transform: none !important;
+                transition: none !important;
+            }
+        }
+
     </style>
 
 <script type="application/ld+json">
@@ -416,6 +590,23 @@
     }
   ]
 }
+
+    // Scroll reveal
+    var revealEls = document.querySelectorAll('[data-reveal], [data-stagger]');
+    if ('IntersectionObserver' in window) {
+        var revealObs = new IntersectionObserver(function(entries) {
+            for (var i = 0; i < entries.length; i++) {
+                if (entries[i].isIntersecting) {
+                    entries[i].target.classList.add('revealed');
+                }
+            }
+        }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+        for (var i = 0; i < revealEls.length; i++) { revealObs.observe(revealEls[i]); }
+    } else {
+        // Fallback: show everything
+        for (var i = 0; i < revealEls.length; i++) { revealEls[i].classList.add('revealed'); }
+    }
+
 </script>
 </head>
 <body>
@@ -462,7 +653,7 @@
             <!-- 1. BOOKING & AVAILABILITY -->
             <div class="faq-category open">
                 <button class="faq-cat-header" onclick="toggleCat(this)">
-                    <h2>Booking &amp; Availability</h2>
+                    <h2>Booking &amp;&nbsp;Availability</h2>
                     <span class="faq-cat-toggle"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span>
                 </button>
                 <div class="faq-cat-body">
@@ -496,7 +687,7 @@
             <!-- 2. PACKAGES & PRICING -->
             <div class="faq-category">
                 <button class="faq-cat-header" onclick="toggleCat(this)">
-                    <h2>Packages &amp; Pricing</h2>
+                    <h2>Packages &amp;&nbsp;Pricing</h2>
                     <span class="faq-cat-toggle"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span>
                 </button>
                 <div class="faq-cat-body">
@@ -563,7 +754,7 @@
             <!-- 3. OUR APPROACH & STYLE -->
             <div class="faq-category">
                 <button class="faq-cat-header" onclick="toggleCat(this)">
-                    <h2>Our Approach &amp; Style</h2>
+                    <h2>Our Approach &amp;&nbsp;Style</h2>
                     <span class="faq-cat-toggle"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span>
                 </button>
                 <div class="faq-cat-body">
@@ -605,7 +796,7 @@
             <!-- 4. COVERAGE & SERVICES -->
             <div class="faq-category">
                 <button class="faq-cat-header" onclick="toggleCat(this)">
-                    <h2>Coverage &amp; Services</h2>
+                    <h2>Coverage &amp;&nbsp;Services</h2>
                     <span class="faq-cat-toggle"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span>
                 </button>
                 <div class="faq-cat-body">
@@ -636,7 +827,7 @@
             <!-- 5. VENUES & LOCATIONS -->
             <div class="faq-category">
                 <button class="faq-cat-header" onclick="toggleCat(this)">
-                    <h2>Venues &amp; Locations</h2>
+                    <h2>Venues &amp;&nbsp;Locations</h2>
                     <span class="faq-cat-toggle"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span>
                 </button>
                 <div class="faq-cat-body">
@@ -670,7 +861,7 @@
             <!-- 6. AFTER YOUR WEDDING -->
             <div class="faq-category">
                 <button class="faq-cat-header" onclick="toggleCat(this)">
-                    <h2>After Your Wedding</h2>
+                    <h2>After Your&nbsp;Wedding</h2>
                     <span class="faq-cat-toggle"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span>
                 </button>
                 <div class="faq-cat-body">
@@ -710,7 +901,7 @@
             <!-- 7. ON YOUR WEDDING DAY -->
             <div class="faq-category">
                 <button class="faq-cat-header" onclick="toggleCat(this)">
-                    <h2>On Your Wedding Day</h2>
+                    <h2>On Your Wedding&nbsp;Day</h2>
                     <span class="faq-cat-toggle"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span>
                 </button>
                 <div class="faq-cat-body">
@@ -750,7 +941,7 @@
             <!-- 8. TECHNICAL DETAILS -->
             <div class="faq-category">
                 <button class="faq-cat-header" onclick="toggleCat(this)">
-                    <h2>Technical Details</h2>
+                    <h2>Technical&nbsp;Details</h2>
                     <span class="faq-cat-toggle"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span>
                 </button>
                 <div class="faq-cat-body">
@@ -778,7 +969,7 @@
             <!-- 9. SPECIAL CIRCUMSTANCES -->
             <div class="faq-category">
                 <button class="faq-cat-header" onclick="toggleCat(this)">
-                    <h2>Special Circumstances</h2>
+                    <h2>Special&nbsp;Circumstances</h2>
                     <span class="faq-cat-toggle"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span>
                 </button>
                 <div class="faq-cat-body">
@@ -812,7 +1003,7 @@
             <!-- 10. LOGISTICS & PRACTICAL MATTERS -->
             <div class="faq-category">
                 <button class="faq-cat-header" onclick="toggleCat(this)">
-                    <h2>Logistics &amp; Practical Matters</h2>
+                    <h2>Logistics &amp; Practical&nbsp;Matters</h2>
                     <span class="faq-cat-toggle"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span>
                 </button>
                 <div class="faq-cat-body">
@@ -856,11 +1047,11 @@
 <!-- STILL HAVE QUESTIONS -->
 <section class="still-questions">
     <div class="container">
-        <h2>Still have questions?</h2>
+        <h2>Still have&nbsp;questions?</h2>
         <p>We're here to help! Whether you're at the start of your planning journey or ready to book, we'd love to hear from you.</p>
         <ul class="still-contact">
             <li>Call us: <a href="tel:01202059325">01202 059325</a></li>
-            <li>Email: <a href="mailto:info@ekoevents.co.uk">info@ekoevents.co.uk</a></li>
+            <li>Email: <a href="/cdn-cgi/l/email-protection#1e777078715e7b75717b687b706a6d307d71306b75"><span class="__cf_email__" data-cfemail="fb92959d94bb9e90949e8d9e958f88d59894d58e90">[email&#160;protected]</span></a></li>
         </ul>
         <a href="contact.html" class="btn">Get in Touch</a>
     </div>
@@ -870,16 +1061,16 @@
 <section class="contact" id="contact">
     <div class="container">
         <div class="section-heading">
-            <h2>Get in touch!</h2>
-            <h3>Let's discuss your wedding videography...</h3>
+            <h2>Get in&nbsp;touch!</h2>
+            <h3>Let's discuss your wedding&nbsp;videography...</h3>
         </div>
         <div class="contact-grid">
-            <div class="contact-info">
+            <div class="contact-info" data-reveal="left">
                 <p>We'd love to hear about your wedding plans! Whether you're getting married in Dorset, Hampshire, or across South England, we're here to answer your questions and discuss how we can capture your special day.</p>
                 <p>We typically respond within 24 hours and are happy to arrange a phone call, video chat, or in-person meeting at your convenience.</p>
                 <ul class="contact-details">
                     <li><a href="tel:01202059325" style="color:inherit;">01202 059325</a></li>
-                    <li><a href="mailto:info@ekoevents.co.uk">info@ekoevents.co.uk</a></li>
+                    <li><a href="/cdn-cgi/l/email-protection#2e474048416e4b45414b584b405a5d004d41005b45"><span class="__cf_email__" data-cfemail="0a63646c654a6f61656f7c6f647e79246965247f61">[email&#160;protected]</span></a></li>
                     <li>Based in Bournemouth, UK</li>
                     <li>Covering weddings across Dorset, Hampshire &amp; South England</li>
                 </ul>
@@ -916,7 +1107,7 @@
             </ul>
             <ul class="footer-contact-mini">
                 <li><a href="tel:01202059325">01202 059325</a></li>
-                <li><a href="mailto:info@ekoevents.co.uk">info@ekoevents.co.uk</a></li>
+                <li><a href="/cdn-cgi/l/email-protection#5831363e37183d33373d2e3d362c2b763b37762d33"><span class="__cf_email__" data-cfemail="4d24232b220d282622283b2823393e632e22633826">[email&#160;protected]</span></a></li>
                 <li>Based in Bournemouth, UK</li>
             </ul>
         </div>
@@ -926,22 +1117,4 @@
         </div>
     </div>
 </footer>
-<script>
-
-    // FAQ
-    function toggleFaq(btn) {
-        var item = btn.parentElement;
-        var wasOpen = item.classList.contains('open');
-        var siblings = item.parentElement.querySelectorAll('.faq-item');
-        for (var i = 0; i < siblings.length; i++) { siblings[i].classList.remove('open'); }
-        if (!wasOpen) item.classList.add('open');
-    }
-
-    // Category toggle
-    function toggleCat(btn) {
-        btn.closest('.faq-category').classList.toggle('open');
-    }
-</script>
-
-</body>
-</html>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></sc

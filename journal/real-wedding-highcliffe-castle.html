@@ -41,7 +41,24 @@
         {"@type": "ListItem", "position": 3, "name": "Real Wedding Highcliffe Castle", "item": "https://www.ekoevents.co.uk/journal/real-wedding-highcliffe-castle.html"}
       ]
     }
-    </script>
+    
+    // Scroll reveal
+    var revealEls = document.querySelectorAll('[data-reveal], [data-stagger]');
+    if ('IntersectionObserver' in window) {
+        var revealObs = new IntersectionObserver(function(entries) {
+            for (var i = 0; i < entries.length; i++) {
+                if (entries[i].isIntersecting) {
+                    entries[i].target.classList.add('revealed');
+                }
+            }
+        }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+        for (var i = 0; i < revealEls.length; i++) { revealObs.observe(revealEls[i]); }
+    } else {
+        // Fallback: show everything
+        for (var i = 0; i < revealEls.length; i++) { revealEls[i].classList.add('revealed'); }
+    }
+
+</script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
@@ -100,6 +117,180 @@
         .footer-bottom{border-top:1px solid rgba(255,255,255,.1);padding-top:20px;display:flex;justify-content:space-between;font-size:12px;flex-wrap:wrap;gap:8px}
         .footer-bottom a{color:rgba(255,255,255,.6);text-decoration:none}.footer-bottom a:hover{color:#fff}
         @media(max-width:768px){.nav-links,.nav-hitched{display:none}.nav-toggle{display:flex}.nav-links.open{display:flex;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:var(--white);padding:20px;gap:16px;box-shadow:0 8px 20px rgba(0,0,0,.08)}.related-grid{grid-template-columns:1fr;max-width:400px}}
+    
+        /* ─── PREMIUM MOTION ─── */
+        [data-reveal] {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+                        transform 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        [data-reveal="left"] { transform: translateX(-32px); }
+        [data-reveal="right"] { transform: translateX(32px); }
+        [data-reveal="scale"] { transform: scale(0.95); }
+        [data-reveal].revealed {
+            opacity: 1;
+            transform: translateY(0) translateX(0) scale(1);
+        }
+
+        /* Stagger children */
+        [data-stagger] > * {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        [data-stagger].revealed > *:nth-child(1) { transition-delay: 0.05s; }
+        [data-stagger].revealed > *:nth-child(2) { transition-delay: 0.12s; }
+        [data-stagger].revealed > *:nth-child(3) { transition-delay: 0.19s; }
+        [data-stagger].revealed > *:nth-child(4) { transition-delay: 0.26s; }
+        [data-stagger].revealed > *:nth-child(5) { transition-delay: 0.33s; }
+        [data-stagger].revealed > *:nth-child(6) { transition-delay: 0.40s; }
+        [data-stagger].revealed > *:nth-child(7) { transition-delay: 0.47s; }
+        [data-stagger].revealed > *:nth-child(8) { transition-delay: 0.54s; }
+        [data-stagger].revealed > *:nth-child(9) { transition-delay: 0.61s; }
+        [data-stagger].revealed > *:nth-child(10) { transition-delay: 0.68s; }
+        [data-stagger].revealed > *:nth-child(11) { transition-delay: 0.75s; }
+        [data-stagger].revealed > *:nth-child(12) { transition-delay: 0.82s; }
+        [data-stagger].revealed > * {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Divider line animation */
+        .divider {
+            width: 0;
+            transition: width 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s;
+        }
+        .revealed .divider,
+        [data-reveal].revealed + .divider,
+        [data-reveal].revealed .divider { width: 48px; }
+
+        /* Button hover fill effect */
+        .btn-gold, .fbtn, .form-submit {
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        .btn-gold::before, .fbtn::before, .form-submit::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%; 
+            width: 100%; height: 100%;
+            background: var(--accent-hover);
+            transition: left 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            z-index: -1;
+        }
+        .btn-gold:hover::before, .fbtn:hover::before, .form-submit:hover::before { left: 0; }
+
+        /* Card hover lift */
+        .fcard, .diff-card, .feature-card, .package-card, .card, .related-card {
+            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        box-shadow 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .fcard:hover, .diff-card:hover, .feature-card:hover, .card:hover, .related-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 36px rgba(0,0,0,0.08);
+        }
+
+        /* Image placeholder hover */
+        .img-placeholder {
+            transition: background 0.4s;
+        }
+        .img-placeholder:hover {
+            background: #eaeaea;
+        }
+
+        /* Gallery item cinematic hover */
+        .gallery-card:hover .img-placeholder,
+        .gallery-item:hover .img-placeholder {
+            background: #e0e0e0;
+        }
+
+        /* Smooth label tracking */
+        .label {
+            display: inline-block;
+            transition: letter-spacing 0.4s;
+        }
+        [data-reveal].revealed .label {
+            letter-spacing: 4px;
+        }
+
+        /* Nav link underline animation */
+        .nav-links a {
+            position: relative;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px; left: 0;
+            width: 0; height: 1px;
+            background: var(--accent);
+            transition: width 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .nav-links a:hover::after { width: 100%; }
+
+        /* Testimonial fade transition */
+        .titem, .testimonial-item {
+            animation: fadeQuote 0.5s ease;
+        }
+        @keyframes fadeQuote {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* FAQ smooth expand */
+        .faq-item, .faq-a, .faq-answer, .faq-cat-body {
+            transition: max-height 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        padding 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        /* Why list items stagger on reveal */
+        .why-list li {
+            opacity: 0;
+            transform: translateX(-12px);
+            transition: opacity 0.5s, transform 0.5s;
+        }
+        [data-reveal].revealed .why-list li { opacity: 1; transform: translateX(0); }
+        [data-reveal].revealed .why-list li:nth-child(1) { transition-delay: 0.1s; }
+        [data-reveal].revealed .why-list li:nth-child(2) { transition-delay: 0.17s; }
+        [data-reveal].revealed .why-list li:nth-child(3) { transition-delay: 0.24s; }
+        [data-reveal].revealed .why-list li:nth-child(4) { transition-delay: 0.31s; }
+        [data-reveal].revealed .why-list li:nth-child(5) { transition-delay: 0.38s; }
+        [data-reveal].revealed .why-list li:nth-child(6) { transition-delay: 0.45s; }
+
+        /* Promise list stagger */
+        .promise-list li {
+            opacity: 0;
+            transform: translateX(-12px);
+            transition: opacity 0.5s, transform 0.5s;
+        }
+        [data-reveal].revealed .promise-list li,
+        [data-stagger].revealed .promise-list li { opacity: 1; transform: translateX(0); }
+        .promise-list li:nth-child(1) { transition-delay: 0.08s; }
+        .promise-list li:nth-child(2) { transition-delay: 0.16s; }
+        .promise-list li:nth-child(3) { transition-delay: 0.24s; }
+        .promise-list li:nth-child(4) { transition-delay: 0.32s; }
+        .promise-list li:nth-child(5) { transition-delay: 0.40s; }
+        .promise-list li:nth-child(6) { transition-delay: 0.48s; }
+
+        /* Smooth scroll indicator */
+        @keyframes scrollPulse {
+            0%, 100% { opacity: 0.2; transform: scaleY(0.6); }
+            50% { opacity: 1; transform: scaleY(1); }
+        }
+        .hero-scroll span { animation: scrollPulse 2.5s ease-in-out infinite; }
+
+        /* No-motion preference */
+        @media (prefers-reduced-motion: reduce) {
+            [data-reveal], [data-stagger] > *, .divider, 
+            .why-list li, .promise-list li {
+                opacity: 1 !important;
+                transform: none !important;
+                transition: none !important;
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -111,7 +302,7 @@
 </div></nav>
 <section class="article-hero"><div class="container">
     <span class="tag">Real Weddings</span>
-    <h1>Real Wedding: A Winter Celebration at Highcliffe Castle</h1>
+    <h1>Real Wedding: A Winter Celebration at Highcliffe&nbsp;Castle</h1>
     <p class="article-meta">8 January 2026 <span>|</span> 6 min read <span>|</span> EKO Wedding Films</p>
 </div></section>
 <article class="article">
@@ -120,13 +311,13 @@
 
     <div class="img-box"><span>Image: Highcliffe Castle exterior</span></div>
 
-    <h2>The venue</h2>
+    <h2>The&nbsp;venue</h2>
 
     <p><a href="https://www.highcliffecastle.co.uk/weddingshcc" target="_blank" rel="noopener">Highcliffe Castle</a> sits on the clifftops overlooking Christchurch Bay. The Grade I listed building combines Gothic Revival architecture with panoramic sea views, and in winter, the dramatic coastal setting takes on a moody, atmospheric quality that is impossible to replicate in summer.</p>
 
     <p>The couple chose the Great Hall for their ceremony. The high ceilings, stained glass windows, and stone walls create a space that feels both grand and intimate. In December, the low afternoon sun streams through the west-facing windows at exactly the right angle during late afternoon ceremonies, flooding the hall with warm, golden light. This natural light is exceptional for filming and produces footage with a richness and depth that artificial lighting cannot match.</p>
 
-    <h2>The day</h2>
+    <h2>The&nbsp;day</h2>
 
     <p>Bridal preparations took place at a nearby hotel, where the morning light provided soft, flattering conditions for capturing the details: the dress, the shoes, the quiet moments of anticipation before the day begins.</p>
 
@@ -136,41 +327,41 @@
 
     <div class="img-box"><span>Image: Ceremony in the Great Hall</span></div>
 
-    <h2>The reception</h2>
+    <h2>The&nbsp;reception</h2>
 
     <p>The evening reception moved to a marquee on the castle grounds, decorated with candlelight and winter foliage. The transition from the ancient grandeur of the castle to the warm intimacy of the marquee gave the film a natural narrative arc: from anticipation to ceremony to celebration.</p>
 
     <p>The speeches were a highlight. The best man's speech had the room in tears of laughter, while the father of the bride delivered words that brought genuine emotion from every guest. These moments are where wedding videography earns its value. No photograph can capture the timing of a punchline or the way a room collectively holds its breath.</p>
 
-    <h2>Why winter weddings work beautifully on film</h2>
+    <h2>Why winter weddings work beautifully on&nbsp;film</h2>
 
     <p>There is a misconception that summer weddings make better films. In our experience, winter weddings often produce the most atmospheric and emotionally powerful footage. The light is warmer and softer. The pace is more relaxed. The shorter days create natural transitions from daylight ceremony to candlelit evening that give the film a cinematic progression.</p>
 
     <p>At Highcliffe Castle, the winter setting added a layer of drama that perfectly matched the Gothic architecture. The moody sky over the sea, the bare trees along the coastal path, the warm glow from the castle windows against the darkening sky: these contrasts create visual storytelling that summer simply cannot deliver.</p>
 
-    <h2>Videography details</h2>
+    <h2>Videography&nbsp;details</h2>
 
     <p><strong>Coverage:</strong> 10 hours, from bridal preparations through to the first dance</p>
     <p><strong>Team:</strong> Husband and wife dual-camera setup</p>
     <p><strong>Equipment:</strong> Sony A7 cameras, wireless audio, drone (conditions permitted limited aerial footage due to coastal wind)</p>
     <p><strong>Deliverables:</strong> Full wedding film (52 minutes), highlight film (4 minutes), individual ceremony, speeches, and first dance films. Delivered via private online gallery and USB gift box.</p>
 
-    <div class="cta-box">
+    <div class="cta-box" data-reveal>
         <p>Want to see how your venue will look on film? <a href="../gallery.html">Browse our gallery</a> or <a href="../contact.html">get in touch</a> to discuss your wedding plans.</p>
         <a href="../contact.html">Contact us &rarr;</a>
     </div>
 
 </article>
 <section class="related"><div class="container">
-    <div class="related-heading"><h2>More from the Journal</h2></div>
-    <div class="related-grid">
+    <div class="related-heading"><h2>More from the&nbsp;Journal</h2></div>
+    <div class="related-grid" data-stagger>
         <div class="related-card"><div class="card-img"><span>Image</span></div><div class="card-body"><p>Venues</p><h4><a href="best-wedding-venues-dorset-2026.html">12 Best Wedding Venues in Dorset for 2026</a></h4></div></div>
         <div class="related-card"><div class="card-img"><span>Image</span></div><div class="card-body"><p>Real Weddings</p><h4><a href="real-wedding-sopley-mill.html">Summer at Sopley Mill</a></h4></div></div>
         <div class="related-card"><div class="card-img"><span>Image</span></div><div class="card-body"><p>Guide</p><h4><a href="coastal-wedding-videography-dorset-hampshire.html">Coastal Wedding Videography Guide</a></h4></div></div>
     </div>
 </div></section>
 <section class="cta-band"><div class="container">
-    <h2>Planning a Highcliffe Castle wedding?</h2>
+    <h2>Planning a Highcliffe Castle&nbsp;wedding?</h2>
     <p>We have filmed multiple weddings at the castle and know exactly how to make the most of this stunning venue.</p>
     <a href="../contact.html" class="btn">Get in Touch</a>
 </div></section>
@@ -189,16 +380,9 @@
             </ul>
             <ul class="footer-mini">
                 <li><a href="tel:01202059325">01202 059325</a></li>
-                <li><a href="mailto:info@ekoevents.co.uk">info@ekoevents.co.uk</a></li>
+                <li><a href="/cdn-cgi/l/email-protection#345d5a525b74515f5b5142515a40471a575b1a415f"><span class="__cf_email__" data-cfemail="9bf2f5fdf4dbfef0f4feedfef5efe8b5f8f4b5eef0">[email&#160;protected]</span></a></li>
                 <li>Based in Bournemouth, UK</li>
             </ul>
         </div>
         <div class="footer-bottom">
-            <span>EKO Events Limited. 2026. Company Number: 13557941</span>
-            <a href="privacy-policy.html">Privacy Policy</a>
-        </div>
-    </div>
-</footer>
-
-</body>
-</html>
+            <span>EKO Events Limited. 2026. Company 

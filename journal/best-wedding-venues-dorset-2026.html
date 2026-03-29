@@ -42,7 +42,24 @@
         {"@type": "ListItem", "position": 3, "name": "Best Wedding Venues in Dorset", "item": "https://www.ekoevents.co.uk/journal/best-wedding-venues-dorset-2026.html"}
       ]
     }
-    </script>
+    
+    // Scroll reveal
+    var revealEls = document.querySelectorAll('[data-reveal], [data-stagger]');
+    if ('IntersectionObserver' in window) {
+        var revealObs = new IntersectionObserver(function(entries) {
+            for (var i = 0; i < entries.length; i++) {
+                if (entries[i].isIntersecting) {
+                    entries[i].target.classList.add('revealed');
+                }
+            }
+        }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+        for (var i = 0; i < revealEls.length; i++) { revealObs.observe(revealEls[i]); }
+    } else {
+        // Fallback: show everything
+        for (var i = 0; i < revealEls.length; i++) { revealEls[i].classList.add('revealed'); }
+    }
+
+</script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
@@ -330,6 +347,180 @@
             }
             .related-grid { grid-template-columns: 1fr; max-width: 400px; }
         }
+    
+        /* ─── PREMIUM MOTION ─── */
+        [data-reveal] {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+                        transform 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        [data-reveal="left"] { transform: translateX(-32px); }
+        [data-reveal="right"] { transform: translateX(32px); }
+        [data-reveal="scale"] { transform: scale(0.95); }
+        [data-reveal].revealed {
+            opacity: 1;
+            transform: translateY(0) translateX(0) scale(1);
+        }
+
+        /* Stagger children */
+        [data-stagger] > * {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        [data-stagger].revealed > *:nth-child(1) { transition-delay: 0.05s; }
+        [data-stagger].revealed > *:nth-child(2) { transition-delay: 0.12s; }
+        [data-stagger].revealed > *:nth-child(3) { transition-delay: 0.19s; }
+        [data-stagger].revealed > *:nth-child(4) { transition-delay: 0.26s; }
+        [data-stagger].revealed > *:nth-child(5) { transition-delay: 0.33s; }
+        [data-stagger].revealed > *:nth-child(6) { transition-delay: 0.40s; }
+        [data-stagger].revealed > *:nth-child(7) { transition-delay: 0.47s; }
+        [data-stagger].revealed > *:nth-child(8) { transition-delay: 0.54s; }
+        [data-stagger].revealed > *:nth-child(9) { transition-delay: 0.61s; }
+        [data-stagger].revealed > *:nth-child(10) { transition-delay: 0.68s; }
+        [data-stagger].revealed > *:nth-child(11) { transition-delay: 0.75s; }
+        [data-stagger].revealed > *:nth-child(12) { transition-delay: 0.82s; }
+        [data-stagger].revealed > * {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Divider line animation */
+        .divider {
+            width: 0;
+            transition: width 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s;
+        }
+        .revealed .divider,
+        [data-reveal].revealed + .divider,
+        [data-reveal].revealed .divider { width: 48px; }
+
+        /* Button hover fill effect */
+        .btn-gold, .fbtn, .form-submit {
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        .btn-gold::before, .fbtn::before, .form-submit::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%; 
+            width: 100%; height: 100%;
+            background: var(--accent-hover);
+            transition: left 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            z-index: -1;
+        }
+        .btn-gold:hover::before, .fbtn:hover::before, .form-submit:hover::before { left: 0; }
+
+        /* Card hover lift */
+        .fcard, .diff-card, .feature-card, .package-card, .card, .related-card {
+            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        box-shadow 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .fcard:hover, .diff-card:hover, .feature-card:hover, .card:hover, .related-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 36px rgba(0,0,0,0.08);
+        }
+
+        /* Image placeholder hover */
+        .img-placeholder {
+            transition: background 0.4s;
+        }
+        .img-placeholder:hover {
+            background: #eaeaea;
+        }
+
+        /* Gallery item cinematic hover */
+        .gallery-card:hover .img-placeholder,
+        .gallery-item:hover .img-placeholder {
+            background: #e0e0e0;
+        }
+
+        /* Smooth label tracking */
+        .label {
+            display: inline-block;
+            transition: letter-spacing 0.4s;
+        }
+        [data-reveal].revealed .label {
+            letter-spacing: 4px;
+        }
+
+        /* Nav link underline animation */
+        .nav-links a {
+            position: relative;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px; left: 0;
+            width: 0; height: 1px;
+            background: var(--accent);
+            transition: width 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .nav-links a:hover::after { width: 100%; }
+
+        /* Testimonial fade transition */
+        .titem, .testimonial-item {
+            animation: fadeQuote 0.5s ease;
+        }
+        @keyframes fadeQuote {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* FAQ smooth expand */
+        .faq-item, .faq-a, .faq-answer, .faq-cat-body {
+            transition: max-height 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        padding 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        /* Why list items stagger on reveal */
+        .why-list li {
+            opacity: 0;
+            transform: translateX(-12px);
+            transition: opacity 0.5s, transform 0.5s;
+        }
+        [data-reveal].revealed .why-list li { opacity: 1; transform: translateX(0); }
+        [data-reveal].revealed .why-list li:nth-child(1) { transition-delay: 0.1s; }
+        [data-reveal].revealed .why-list li:nth-child(2) { transition-delay: 0.17s; }
+        [data-reveal].revealed .why-list li:nth-child(3) { transition-delay: 0.24s; }
+        [data-reveal].revealed .why-list li:nth-child(4) { transition-delay: 0.31s; }
+        [data-reveal].revealed .why-list li:nth-child(5) { transition-delay: 0.38s; }
+        [data-reveal].revealed .why-list li:nth-child(6) { transition-delay: 0.45s; }
+
+        /* Promise list stagger */
+        .promise-list li {
+            opacity: 0;
+            transform: translateX(-12px);
+            transition: opacity 0.5s, transform 0.5s;
+        }
+        [data-reveal].revealed .promise-list li,
+        [data-stagger].revealed .promise-list li { opacity: 1; transform: translateX(0); }
+        .promise-list li:nth-child(1) { transition-delay: 0.08s; }
+        .promise-list li:nth-child(2) { transition-delay: 0.16s; }
+        .promise-list li:nth-child(3) { transition-delay: 0.24s; }
+        .promise-list li:nth-child(4) { transition-delay: 0.32s; }
+        .promise-list li:nth-child(5) { transition-delay: 0.40s; }
+        .promise-list li:nth-child(6) { transition-delay: 0.48s; }
+
+        /* Smooth scroll indicator */
+        @keyframes scrollPulse {
+            0%, 100% { opacity: 0.2; transform: scaleY(0.6); }
+            50% { opacity: 1; transform: scaleY(1); }
+        }
+        .hero-scroll span { animation: scrollPulse 2.5s ease-in-out infinite; }
+
+        /* No-motion preference */
+        @media (prefers-reduced-motion: reduce) {
+            [data-reveal], [data-stagger] > *, .divider, 
+            .why-list li, .promise-list li {
+                opacity: 1 !important;
+                transform: none !important;
+                transition: none !important;
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -363,7 +554,7 @@
 <section class="article-hero">
     <div class="container">
         <span class="tag">Venues</span>
-        <h1>12 Best Wedding Venues in Dorset for 2026</h1>
+        <h1>12 Best Wedding Venues in Dorset for&nbsp;2026</h1>
         <p class="article-meta">2 March 2026 <span>|</span> 12 min read <span>|</span> EKO Wedding Films</p>
     </div>
 </section>
@@ -378,7 +569,7 @@
 
     <p>This is not a list pulled from a directory. Every venue here is one we have filmed at, scouted, or know intimately from years of working across Dorset. We have chosen them based on what matters most for your wedding day and your wedding film: light, space, atmosphere, and those small details that make a celebration feel truly personal.</p>
 
-    <h2>What makes a great wedding venue for film?</h2>
+    <h2>What makes a great wedding venue for&nbsp;film?</h2>
 
     <p>Before we get into the list, it is worth understanding what separates a photogenic venue from one that looks incredible on video. Photography captures a single moment. Videography captures movement, sound, and the way light changes throughout your day.</p>
 
@@ -388,7 +579,7 @@
 
 
     <!-- VENUE 1 -->
-    <div class="venue">
+    <div class="venue" data-reveal>
         <p class="venue-num">01</p>
         <h3><a href="https://www.highcliffecastle.co.uk/weddingshcc" target="_blank" rel="noopener">Highcliffe Castle</a></h3>
         <p class="venue-location">Christchurch, Dorset</p>
@@ -403,9 +594,9 @@
     </div>
 
     <!-- VENUE 2 -->
-    <div class="venue">
+    <div class="venue" data-reveal>
         <p class="venue-num">02</p>
-        <h3>The Italian Villa at Compton Acres</h3>
+        <h3>The Italian Villa at Compton&nbsp;Acres</h3>
         <p class="venue-location">Poole, Dorset</p>
         <div class="venue-img"><span>Image</span></div>
         <p>Nestled within the award-winning gardens of Compton Acres, The Italian Villa feels like a Mediterranean escape without leaving Dorset. The venue offers three floors of elegant event spaces, but it is the outdoor Italian Garden that steals the show for wedding films.</p>
@@ -418,7 +609,7 @@
     </div>
 
     <!-- VENUE 3 -->
-    <div class="venue">
+    <div class="venue" data-reveal>
         <p class="venue-num">03</p>
         <h3><a href="https://sopleymill.co.uk/weddings/" target="_blank" rel="noopener">Sopley Mill</a></h3>
         <p class="venue-location">Sopley, near Christchurch</p>
@@ -433,7 +624,7 @@
     </div>
 
     <!-- VENUE 4 -->
-    <div class="venue">
+    <div class="venue" data-reveal>
         <p class="venue-num">04</p>
         <h3><a href="https://lulworth.com/weddings/" target="_blank" rel="noopener">Lulworth Castle</a></h3>
         <p class="venue-location">East Lulworth, Dorset</p>
@@ -447,7 +638,7 @@
     </div>
 
     <!-- VENUE 5 -->
-    <div class="venue">
+    <div class="venue" data-reveal>
         <p class="venue-num">05</p>
         <h3><a href="https://www.athelhampton.co.uk/weddings/" target="_blank" rel="noopener">Athelhampton House</a></h3>
         <p class="venue-location">Puddletown, near Dorchester</p>
@@ -461,7 +652,7 @@
     </div>
 
     <!-- VENUE 6 -->
-    <div class="venue">
+    <div class="venue" data-reveal>
         <p class="venue-num">06</p>
         <h3><a href="https://www.kingstoncountrycourtyard.com/" target="_blank" rel="noopener">Kingston Country Courtyard</a></h3>
         <p class="venue-location">Kingston, Isle of Purbeck</p>
@@ -475,14 +666,14 @@
     </div>
 
 
-    <div class="cta-box">
+    <div class="cta-box" data-reveal>
         <p>Thinking about how your venue will look on film? We have filmed at dozens of Dorset venues and would love to discuss your plans.</p>
         <a href="../contact.html">Get in touch to check our availability &rarr;</a>
     </div>
 
 
     <!-- VENUE 7 -->
-    <div class="venue">
+    <div class="venue" data-reveal>
         <p class="venue-num">07</p>
         <h3><a href="https://www.christchurch-harbour-hotel.co.uk/weddings/" target="_blank" rel="noopener">Christchurch Harbour Hotel</a></h3>
         <p class="venue-location">Christchurch, Dorset</p>
@@ -496,7 +687,7 @@
     </div>
 
     <!-- VENUE 8 -->
-    <div class="venue">
+    <div class="venue" data-reveal>
         <p class="venue-num">08</p>
         <h3><a href="https://mapperton.com/weddings/" target="_blank" rel="noopener">Mapperton House</a></h3>
         <p class="venue-location">Beaminster, West Dorset</p>
@@ -510,7 +701,7 @@
     </div>
 
     <!-- VENUE 9 -->
-    <div class="venue">
+    <div class="venue" data-reveal>
         <p class="venue-num">09</p>
         <h3><a href="https://symondsburyestate.co.uk/the-tithe-barn/" target="_blank" rel="noopener">The Tithe Barn at Symondsbury Estate</a></h3>
         <p class="venue-location">Symondsbury, near Bridport</p>
@@ -524,7 +715,7 @@
     </div>
 
     <!-- VENUE 10 -->
-    <div class="venue">
+    <div class="venue" data-reveal>
         <p class="venue-num">10</p>
         <h3><a href="https://camehouse.co.uk/" target="_blank" rel="noopener">Came House</a></h3>
         <p class="venue-location">Dorchester, Dorset</p>
@@ -538,7 +729,7 @@
     </div>
 
     <!-- VENUE 11 -->
-    <div class="venue">
+    <div class="venue" data-reveal>
         <p class="venue-num">11</p>
         <h3><a href="https://theoldvicaragewedding.co.uk/" target="_blank" rel="noopener">The Old Vicarage</a></h3>
         <p class="venue-location">Christchurch, Dorset</p>
@@ -552,7 +743,7 @@
     </div>
 
     <!-- VENUE 12 -->
-    <div class="venue">
+    <div class="venue" data-reveal>
         <p class="venue-num">12</p>
         <h3><a href="https://www.burleymanor.com/weddings/" target="_blank" rel="noopener">Burley Manor</a></h3>
         <p class="venue-location">Burley, New Forest</p>
@@ -566,7 +757,7 @@
     </div>
 
 
-    <h2>Choosing the right venue for your wedding film</h2>
+    <h2>Choosing the right venue for your wedding&nbsp;film</h2>
 
     <p>Every venue on this list produces beautiful wedding footage, but the right choice depends on what matters most to you as a couple. If you want drama and scale, Lulworth Castle or Highcliffe Castle will deliver. If you want intimacy and natural beauty, Sopley Mill or The Old Vicarage are hard to beat. If rustic character is your priority, Kingston Country Courtyard or the Tithe Barn will feel like home from the moment you arrive.</p>
 
@@ -574,7 +765,7 @@
 
     <p>If you are planning a Dorset wedding and want to discuss how your venue will look on camera, we would love to hear from you. As a <a href="../about.html">husband and wife videography team</a> who have filmed across the county for over a decade, we can offer honest advice about lighting, logistics, and how to get the most from your chosen venue.</p>
 
-    <div class="cta-box">
+    <div class="cta-box" data-reveal>
         <p>Ready to discuss your wedding videography? View our <a href="../packages.html">packages</a> or get in touch to check availability.</p>
         <a href="../contact.html">Contact us &rarr;</a>
     </div>
@@ -586,9 +777,9 @@
 <section class="related">
     <div class="container">
         <div class="related-heading">
-            <h2>More from the Journal</h2>
+            <h2>More from the&nbsp;Journal</h2>
         </div>
-        <div class="related-grid">
+        <div class="related-grid" data-stagger>
             <div class="related-card">
                 <div class="card-img"><span>Image</span></div>
                 <div class="card-body">
@@ -618,7 +809,7 @@
 <!-- CTA BAND -->
 <section class="cta-band">
     <div class="container">
-        <h2>Planning a Dorset wedding?</h2>
+        <h2>Planning a Dorset&nbsp;wedding?</h2>
         <p>We would love to hear about your plans and discuss how we can capture your day.</p>
         <a href="../contact.html" class="btn">Get in Touch</a>
     </div>
@@ -641,16 +832,9 @@
             </ul>
             <ul class="footer-mini">
                 <li><a href="tel:01202059325">01202 059325</a></li>
-                <li><a href="mailto:info@ekoevents.co.uk">info@ekoevents.co.uk</a></li>
+                <li><a href="/cdn-cgi/l/email-protection#c7aea9a1a887a2aca8a2b1a2a9b3b4e9a4a8e9b2ac"><span class="__cf_email__" data-cfemail="4a23242c250a2f21252f3c2f243e39642925643f21">[email&#160;protected]</span></a></li>
                 <li>Based in Bournemouth, UK</li>
             </ul>
         </div>
         <div class="footer-bottom">
-            <span>EKO Events Limited. 2026. Company Number: 13557941</span>
-            <a href="privacy-policy.html">Privacy Policy</a>
-        </div>
-    </div>
-</footer>
-
-</body>
-</html>
+            <span>EKO Events Limited. 2026. Company 
