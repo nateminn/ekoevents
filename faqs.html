@@ -490,6 +490,17 @@
         for (var i = 0; i < revealEls.length; i++) { revealEls[i].classList.add('revealed'); }
     }
 
+
+    // Category toggle
+    function toggleCat(btn) {
+        var el = btn.parentElement;
+        if (el.classList.contains('faq-category')) {
+            el.classList.toggle('open');
+        } else if (btn.closest) {
+            btn.closest('.faq-category').classList.toggle('open');
+        }
+    }
+
 </script>
 </head>
 <body>
@@ -934,7 +945,7 @@
         <p>We're here to help! Whether you're at the start of your planning journey or ready to book, we'd love to hear from you.</p>
         <ul class="still-contact">
             <li>Call us: <a href="tel:01202059325">01202 059325</a></li>
-            <li>Email: <a href="/cdn-cgi/l/email-protection#274e49414867424c4842514249535409444809524c"><span class="__cf_email__" data-cfemail="60090e060f20050b0f0516050e14134e030f4e150b">[email&#160;protected]</span></a></li>
+            <li>Email: <a href="mailto:info&#64;ekoevents.co.uk">info&#64;ekoevents.co.uk</a></li>
         </ul>
         <a href="contact.html" class="btn">Get in Touch</a>
     </div>
@@ -953,7 +964,7 @@
                 <p>We typically respond within 24 hours and are happy to arrange a phone call, video chat, or in-person meeting at your convenience.</p>
                 <ul class="contact-details">
                     <li><a href="tel:01202059325" style="color:inherit;">01202 059325</a></li>
-                    <li><a href="/cdn-cgi/l/email-protection#1d74737b725d787672786b7873696e337e72336876"><span class="__cf_email__" data-cfemail="a4cdcac2cbe4c1cfcbc1d2c1cad0d78ac7cb8ad1cf">[email&#160;protected]</span></a></li>
+                    <li><a href="mailto:info&#64;ekoevents.co.uk">info&#64;ekoevents.co.uk</a></li>
                     <li>Based in Bournemouth, UK</li>
                     <li>Covering weddings across Dorset, Hampshire &amp; South England</li>
                 </ul>
@@ -990,7 +1001,7 @@
             </ul>
             <ul class="footer-contact-mini">
                 <li><a href="tel:01202059325">01202 059325</a></li>
-                <li><a href="/cdn-cgi/l/email-protection#f49d9a929bb4919f9b9182919a8087da979bda819f"><span class="__cf_email__" data-cfemail="6c05020a032c090703091a0902181f420f03421907">[email&#160;protected]</span></a></li>
+                <li><a href="mailto:info&#64;ekoevents.co.uk">info&#64;ekoevents.co.uk</a></li>
                 <li>Based in Bournemouth, UK</li>
             </ul>
         </div>
@@ -1001,9 +1012,12 @@
     </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
     // FAQ toggle
     function toggleFaq(btn) {
         var item = btn.parentElement;
         var wasOpen = item.classList.contains('open');
         v
+
+</body>
+</html>
