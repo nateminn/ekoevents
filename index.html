@@ -697,7 +697,7 @@
                 <p>We typically respond within 24 hours and are happy to arrange a call, video chat, or meeting at your convenience.</p>
                 <ul class="contact-details">
                     <li><a href="tel:01202059325">01202 059325</a></li>
-                    <li><a href="/cdn-cgi/l/email-protection#9ef7f0f8f1defbf5f1fbe8fbf0eaedb0fdf1b0ebf5"><span class="__cf_email__" data-cfemail="036a6d656c4366686c6675666d77702d606c2d7668">[email&#160;protected]</span></a></li>
+                    <li><a href="mailto:info@ekoevents.co.uk">info@ekoevents.co.uk</a></li>
                     <li>Based in Bournemouth, UK</li>
                     <li>Covering Dorset, Hampshire &amp; South England</li>
                 </ul>
@@ -733,7 +733,7 @@
             </ul>
             <ul class="footer-mini">
                 <li><a href="tel:01202059325">01202 059325</a></li>
-                <li><a href="/cdn-cgi/l/email-protection#046d6a626b44616f6b6172616a70772a676b2a716f"><span class="__cf_email__" data-cfemail="a8c1c6cec7e8cdc3c7cddecdc6dcdb86cbc786ddc3">[email&#160;protected]</span></a></li>
+                <li><a href="mailto:info@ekoevents.co.uk">info@ekoevents.co.uk</a></li>
                 <li>Based in Bournemouth, UK</li>
             </ul>
         </div>
@@ -743,30 +743,34 @@
         </div>
     </div>
 </footer>
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js">
-}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-        for (var i = 0; i < revealEls.length; i++) { revealObs.observe(revealEls[i]); }
-    } else {
-        // Fallback: show everything
-        for (var i = 0; i < revealEls.length; i++) { revealEls[i].classList.add('revealed'); }
-    }
 
-</script><script>
-
+<script>
     // Testimonials
-    var dots = document.querySelectorAll('.tdot');
-    var items = document.querySelectorAll('.titem');
-    var cur = 0;
-    function slide(i) {
-        for (var j = 0; j < items.length; j++) { items[j].classList.remove('active'); }
-        for (var j = 0; j < dots.length; j++) { dots[j].classList.remove('active'); }
-        items[i].classList.add('active');
-        dots[i].classList.add('active');
-        cur = i;
+    var tdots = document.querySelectorAll('.tdot');
+    var titems = document.querySelectorAll('.titem');
+    var tcur = 0;
+    function tslide(i) {
+        for (var j = 0; j < titems.length; j++) titems[j].classList.remove('active');
+        for (var j = 0; j < tdots.length; j++) tdots[j].classList.remove('active');
+        titems[i].classList.add('active');
+        tdots[i].classList.add('active');
+        tcur = i;
     }
-    for (var j = 0; j < dots.length; j++) {
-        (function(idx) {
-            dots[idx].addEventListener('click', function() { slide(idx); });
-        })(j);
+    for (var j = 0; j < tdots.length; j++) {
+        (function(idx) { tdots[idx].addEventListener('click', function() { tslide(idx); }); })(j);
     }
-    setInterval(function() { slide((cur + 1) % items.length); }, 6000);
+    setInterval(function() { tslide((tcur + 1) % titems.length); }, 6000);
+
+    // FAQ toggle
+    function toggleFaq(btn) {
+        var item = btn.parentElement;
+        var wasOpen = item.classList.contains('open');
+        var siblings = item.parentElement.querySelectorAll('.faq-item');
+        for (var i = 0; i < siblings.length; i++) siblings[i].classList.remove('open');
+        if (!wasOpen) item.classList.add('open');
+    }
+
+</script>
+
+</body>
+</html>

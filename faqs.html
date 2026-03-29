@@ -934,7 +934,7 @@
         <p>We're here to help! Whether you're at the start of your planning journey or ready to book, we'd love to hear from you.</p>
         <ul class="still-contact">
             <li>Call us: <a href="tel:01202059325">01202 059325</a></li>
-            <li>Email: <a href="/cdn-cgi/l/email-protection#1e777078715e7b75717b687b706a6d307d71306b75"><span class="__cf_email__" data-cfemail="fb92959d94bb9e90949e8d9e958f88d59894d58e90">[email&#160;protected]</span></a></li>
+            <li>Email: <a href="mailto:info@ekoevents.co.uk">info@ekoevents.co.uk</a></li>
         </ul>
         <a href="contact.html" class="btn">Get in Touch</a>
     </div>
@@ -953,7 +953,7 @@
                 <p>We typically respond within 24 hours and are happy to arrange a phone call, video chat, or in-person meeting at your convenience.</p>
                 <ul class="contact-details">
                     <li><a href="tel:01202059325" style="color:inherit;">01202 059325</a></li>
-                    <li><a href="/cdn-cgi/l/email-protection#2e474048416e4b45414b584b405a5d004d41005b45"><span class="__cf_email__" data-cfemail="0a63646c654a6f61656f7c6f647e79246965247f61">[email&#160;protected]</span></a></li>
+                    <li><a href="mailto:info@ekoevents.co.uk">info@ekoevents.co.uk</a></li>
                     <li>Based in Bournemouth, UK</li>
                     <li>Covering weddings across Dorset, Hampshire &amp; South England</li>
                 </ul>
@@ -990,7 +990,7 @@
             </ul>
             <ul class="footer-contact-mini">
                 <li><a href="tel:01202059325">01202 059325</a></li>
-                <li><a href="/cdn-cgi/l/email-protection#5831363e37183d33373d2e3d362c2b763b37762d33"><span class="__cf_email__" data-cfemail="4d24232b220d282622283b2823393e632e22633826">[email&#160;protected]</span></a></li>
+                <li><a href="mailto:info@ekoevents.co.uk">info@ekoevents.co.uk</a></li>
                 <li>Based in Bournemouth, UK</li>
             </ul>
         </div>
@@ -1000,4 +1000,28 @@
         </div>
     </div>
 </footer>
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></sc
+
+<script>
+    // FAQ toggle
+    function toggleFaq(btn) {
+        var item = btn.parentElement;
+        var wasOpen = item.classList.contains('open');
+        var siblings = item.parentElement.querySelectorAll('.faq-item');
+        for (var i = 0; i < siblings.length; i++) siblings[i].classList.remove('open');
+        if (!wasOpen) item.classList.add('open');
+    }
+
+    // Category toggle
+    function toggleCat(btn) {
+        var el = btn.parentElement;
+        if (el.classList.contains('faq-category')) {
+            el.classList.toggle('open');
+        } else {
+            btn.closest('.faq-category').classList.toggle('open');
+        }
+    }
+
+</script>
+
+</body>
+</html>

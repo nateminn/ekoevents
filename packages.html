@@ -674,7 +674,7 @@
                 <p>We typically respond within 24 hours and are happy to arrange a phone call, video chat, or in-person meeting at your convenience.</p>
                 <ul class="contact-details">
                     <li><a href="tel:01202059325">01202 059325</a></li>
-                    <li><a href="/cdn-cgi/l/email-protection#234a4d454c6346484c4655464d57500d404c0d5648"><span class="__cf_email__" data-cfemail="50393e363f10353b3f3526353e24237e333f7e253b">[email&#160;protected]</span></a></li>
+                    <li><a href="mailto:info@ekoevents.co.uk">info@ekoevents.co.uk</a></li>
                     <li>Based in Bournemouth, UK</li>
                     <li>Covering weddings across Dorset, Hampshire &amp; South England</li>
                 </ul>
@@ -709,7 +709,7 @@
             </ul>
             <ul class="footer-contact-mini">
                 <li><a href="tel:01202059325">01202 059325</a></li>
-                <li><a href="/cdn-cgi/l/email-protection#cca5a2aaa38ca9a7a3a9baa9a2b8bfe2afa3e2b9a7"><span class="__cf_email__" data-cfemail="224b4c444d6247494d4754474c56510c414d0c5749">[email&#160;protected]</span></a></li>
+                <li><a href="mailto:info@ekoevents.co.uk">info@ekoevents.co.uk</a></li>
                 <li>Based in Bournemouth, UK</li>
             </ul>
         </div>
@@ -719,20 +719,25 @@
         </div>
     </div>
 </footer>
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js">
-}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-        for (var i = 0; i < revealEls.length; i++) { revealObs.observe(revealEls[i]); }
-    } else {
-        // Fallback: show everything
-        for (var i = 0; i < revealEls.length; i++) { revealEls[i].classList.add('revealed'); }
-    }
 
-</script><script>
-
+<script>
     // Testimonials
-    var dots = document.querySelectorAll('.testimonial-dot');
-    var items = document.querySelectorAll('.testimonial-item');
-    var cur = 0;
-    function showSlide(i) {
-        for (var j = 0; j < items.length; j++) { items[j].classList.remove('active'); }
-        for (var j = 0; j < dots.length; j++) { dots[j].classList.remove('active');
+    var tdots = document.querySelectorAll('.testimonial-dot');
+    var titems = document.querySelectorAll('.testimonial-item');
+    var tcur = 0;
+    function tslide(i) {
+        for (var j = 0; j < titems.length; j++) titems[j].classList.remove('active');
+        for (var j = 0; j < tdots.length; j++) tdots[j].classList.remove('active');
+        titems[i].classList.add('active');
+        tdots[i].classList.add('active');
+        tcur = i;
+    }
+    for (var j = 0; j < tdots.length; j++) {
+        (function(idx) { tdots[idx].addEventListener('click', function() { tslide(idx); }); })(j);
+    }
+    setInterval(function() { tslide((tcur + 1) % titems.length); }, 6000);
+
+</script>
+
+</body>
+</html>
