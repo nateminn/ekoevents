@@ -860,7 +860,7 @@
         <p>We're here to help! Whether you're at the start of your planning journey or ready to book, we'd love to hear from you.</p>
         <ul class="still-contact">
             <li>Call us: <a href="tel:01202059325">01202 059325</a></li>
-            <li>Email: <a href="/cdn-cgi/l/email-protection#82ebece4edc2e7e9ede7f4e7ecf6f1ace1edacf7e9"><span class="__cf_email__" data-cfemail="a7cec9c1c8e7c2ccc8c2d1c2c9d3d489c4c889d2cc">[email&#160;protected]</span></a></li>
+            <li>Email: <a href="mailto:info@ekoevents.co.uk">info@ekoevents.co.uk</a></li>
         </ul>
         <a href="contact.html" class="btn">Get in Touch</a>
     </div>
@@ -879,7 +879,7 @@
                 <p>We typically respond within 24 hours and are happy to arrange a phone call, video chat, or in-person meeting at your convenience.</p>
                 <ul class="contact-details">
                     <li><a href="tel:01202059325" style="color:inherit;">01202 059325</a></li>
-                    <li><a href="/cdn-cgi/l/email-protection#7e171018113e1b15111b081b100a0d501d11500b15" style="color:inherit;"><span class="__cf_email__" data-cfemail="1a73747c755a7f71757f6c7f746e69347975346f71">[email&#160;protected]</span></a></li>
+                    <li><a href="mailto:info@ekoevents.co.uk" style="color:inherit;">info@ekoevents.co.uk</a></li>
                     <li>Based in Bournemouth, UK</li>
                     <li>Covering weddings across Dorset, Hampshire &amp; South England</li>
                 </ul>
@@ -899,6 +899,8 @@
 </section>
 
 <!-- FOOTER -->
+
+<!-- FOOTER -->
 <footer class="footer">
     <div class="container">
         <div class="footer-top">
@@ -914,7 +916,7 @@
             </ul>
             <ul class="footer-contact-mini">
                 <li><a href="tel:01202059325">01202 059325</a></li>
-                <li><a href="/cdn-cgi/l/email-protection#70191e161f30151b1f1506151e04035e131f5e051b"><span class="__cf_email__" data-cfemail="761f18101936131d1913001318020558151958031d">[email&#160;protected]</span></a></li>
+                <li><a href="mailto:info@ekoevents.co.uk">info@ekoevents.co.uk</a></li>
                 <li>Based in Bournemouth, UK</li>
             </ul>
         </div>
@@ -925,9 +927,9 @@
     </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
     // Nav
-    window.addEventListener('scroll', () => {
+    window.addEventListener('scroll', function() {
         document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 80);
     });
 
@@ -938,5 +940,15 @@
 
     // Individual FAQ toggle
     function toggleFaq(btn) {
-        const item = btn.parentElement;
-        
+        var item = btn.parentElement;
+        var wasOpen = item.classList.contains('open');
+        var siblings = item.parentElement.querySelectorAll('.faq-item');
+        for (var i = 0; i < siblings.length; i++) {
+            siblings[i].classList.remove('open');
+        }
+        if (!wasOpen) item.classList.add('open');
+    }
+</script>
+
+</body>
+</html>
