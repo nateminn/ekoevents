@@ -317,8 +317,8 @@
             .contact-secondary-grid { grid-template-columns: 1fr; }
         }
 
-        .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.7s, transform 0.7s; }
-        .reveal.visible { opacity: 1; transform: translateY(0); }
+        
+        
     </style>
 
 <script type="application/ld+json">
@@ -380,15 +380,15 @@
 <!-- MAIN CONTACT -->
 <section class="contact-main">
     <div class="container">
-        <div class="contact-main-heading reveal">
+        <div class="contact-main-heading">
             <h2>Get in touch!</h2>
         </div>
-        <p class="contact-main-sub reveal">For more information on any of our services please contact us. One of our expert team will contact you to discuss your individual needs.</p>
+        <p class="contact-main-sub">For more information on any of our services please contact us. One of our expert team will contact you to discuss your individual needs.</p>
 
         <div class="contact-top-grid">
 
             <!-- LEFT: FORM -->
-            <form class="reveal" onsubmit="event.preventDefault();alert('Message sent! We will be in touch soon.');">
+            <form onsubmit="event.preventDefault();alert('Message sent! We will be in touch soon.');">
                 <div class="form-group">
                     <label for="name">Name</label>
                     <input type="text" id="name" name="name" required>
@@ -410,7 +410,7 @@
             </form>
 
             <!-- RIGHT: IMAGE + DETAILS -->
-            <div class="contact-right reveal">
+            <div class="contact-right">
                 <div class="contact-image">
                     <img src="https://www.ekoevents.co.uk/wp-content/uploads/2022/03/274685294_362228275910261_6834134269533175197_n.jpg" alt="EKO Wedding Videography">
                 </div>

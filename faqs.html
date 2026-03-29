@@ -305,8 +305,8 @@
             .still-contact { flex-direction: column; gap: 12px; }
         }
 
-        .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.7s, transform 0.7s; }
-        .reveal.visible { opacity: 1; transform: translateY(0); }
+        
+        
     </style>
 
 <script type="application/ld+json">
@@ -460,7 +460,7 @@
         <div class="faq-wrapper">
 
             <!-- 1. BOOKING & AVAILABILITY -->
-            <div class="faq-category open reveal">
+            <div class="faq-category open">
                 <button class="faq-cat-header" onclick="toggleCat(this)">
                     <h2>Booking &amp; Availability</h2>
                     <span class="faq-cat-toggle"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span>
@@ -494,7 +494,7 @@
             </div>
 
             <!-- 2. PACKAGES & PRICING -->
-            <div class="faq-category reveal">
+            <div class="faq-category">
                 <button class="faq-cat-header" onclick="toggleCat(this)">
                     <h2>Packages &amp; Pricing</h2>
                     <span class="faq-cat-toggle"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span>
@@ -561,7 +561,7 @@
             </div>
 
             <!-- 3. OUR APPROACH & STYLE -->
-            <div class="faq-category reveal">
+            <div class="faq-category">
                 <button class="faq-cat-header" onclick="toggleCat(this)">
                     <h2>Our Approach &amp; Style</h2>
                     <span class="faq-cat-toggle"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span>
@@ -603,7 +603,7 @@
             </div>
 
             <!-- 4. COVERAGE & SERVICES -->
-            <div class="faq-category reveal">
+            <div class="faq-category">
                 <button class="faq-cat-header" onclick="toggleCat(this)">
                     <h2>Coverage &amp; Services</h2>
                     <span class="faq-cat-toggle"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span>
@@ -634,7 +634,7 @@
             </div>
 
             <!-- 5. VENUES & LOCATIONS -->
-            <div class="faq-category reveal">
+            <div class="faq-category">
                 <button class="faq-cat-header" onclick="toggleCat(this)">
                     <h2>Venues &amp; Locations</h2>
                     <span class="faq-cat-toggle"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span>
@@ -668,7 +668,7 @@
             </div>
 
             <!-- 6. AFTER YOUR WEDDING -->
-            <div class="faq-category reveal">
+            <div class="faq-category">
                 <button class="faq-cat-header" onclick="toggleCat(this)">
                     <h2>After Your Wedding</h2>
                     <span class="faq-cat-toggle"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span>
@@ -708,7 +708,7 @@
             </div>
 
             <!-- 7. ON YOUR WEDDING DAY -->
-            <div class="faq-category reveal">
+            <div class="faq-category">
                 <button class="faq-cat-header" onclick="toggleCat(this)">
                     <h2>On Your Wedding Day</h2>
                     <span class="faq-cat-toggle"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span>
@@ -748,7 +748,7 @@
             </div>
 
             <!-- 8. TECHNICAL DETAILS -->
-            <div class="faq-category reveal">
+            <div class="faq-category">
                 <button class="faq-cat-header" onclick="toggleCat(this)">
                     <h2>Technical Details</h2>
                     <span class="faq-cat-toggle"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span>
@@ -776,7 +776,7 @@
             </div>
 
             <!-- 9. SPECIAL CIRCUMSTANCES -->
-            <div class="faq-category reveal">
+            <div class="faq-category">
                 <button class="faq-cat-header" onclick="toggleCat(this)">
                     <h2>Special Circumstances</h2>
                     <span class="faq-cat-toggle"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span>
@@ -810,7 +810,7 @@
             </div>
 
             <!-- 10. LOGISTICS & PRACTICAL MATTERS -->
-            <div class="faq-category reveal">
+            <div class="faq-category">
                 <button class="faq-cat-header" onclick="toggleCat(this)">
                     <h2>Logistics &amp; Practical Matters</h2>
                     <span class="faq-cat-toggle"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span>
@@ -869,12 +869,12 @@
 <!-- CONTACT -->
 <section class="contact" id="contact">
     <div class="container">
-        <div class="section-heading reveal">
+        <div class="section-heading">
             <h2>Get in touch!</h2>
             <h3>Let's discuss your wedding videography...</h3>
         </div>
         <div class="contact-grid">
-            <div class="contact-info reveal">
+            <div class="contact-info">
                 <p>We'd love to hear about your wedding plans! Whether you're getting married in Dorset, Hampshire, or across South England, we're here to answer your questions and discuss how we can capture your special day.</p>
                 <p>We typically respond within 24 hours and are happy to arrange a phone call, video chat, or in-person meeting at your convenience.</p>
                 <ul class="contact-details">
@@ -884,7 +884,7 @@
                     <li>Covering weddings across Dorset, Hampshire &amp; South England</li>
                 </ul>
             </div>
-            <form class="reveal" onsubmit="event.preventDefault();alert('Message sent!');">
+            <form onsubmit="event.preventDefault();alert('Message sent!');">
                 <div class="form-group"><label for="name">Name</label><input type="text" id="name" required></div>
                 <div class="form-group"><label for="email">Email</label><input type="email" id="email" required></div>
                 <div class="form-group"><label for="message">Message</label><textarea id="message" required></textarea></div>

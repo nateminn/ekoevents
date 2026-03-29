@@ -1007,38 +1007,23 @@
             .promise-grid { grid-template-columns: 1fr; }
         }
 
-        /* ── ANIMATIONS ── */
-        .reveal {
-            opacity: 0;
-            transform: translateY(28px);
-            transition: opacity 0.9s cubic-bezier(0.4, 0, 0.2, 1), transform 0.9s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .reveal.visible {
             opacity: 1;
             transform: translateY(0);
         }
 
-        .reveal-delay-1 { transition-delay: 0.1s; }
-        .reveal-delay-2 { transition-delay: 0.2s; }
-        .reveal-delay-3 { transition-delay: 0.3s; }
-        .reveal-delay-4 { transition-delay: 0.4s; }
-        .reveal-delay-5 { transition-delay: 0.5s; }
 
-        .reveal-left {
             opacity: 0;
             transform: translateX(-32px);
             transition: opacity 0.9s cubic-bezier(0.4, 0, 0.2, 1), transform 0.9s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .reveal-right {
             opacity: 0;
             transform: translateX(32px);
             transition: opacity 0.9s cubic-bezier(0.4, 0, 0.2, 1), transform 0.9s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .reveal-left.visible,
-        .reveal-right.visible {
             opacity: 1;
             transform: translateX(0);
         }
@@ -1111,14 +1096,12 @@
 <section class="intro">
     <div class="container">
         <div class="intro-inner">
-            <div class="reveal">
+            <div>
                 <span class="section-number">Welcome</span>
                 <h2>Here at EKO</h2>
                 <div class="gold-rule"></div>
             </div>
-            <p class="lead reveal reveal-delay-1">Experience the magic of Dorset and Hampshire's premier husband and wife wedding videography team.</p>
-            <p class="reveal reveal-delay-2">We specialise in capturing natural, authentic love stories across Dorset, Hampshire, and South England - preserving the genuine emotions and candid moments that make your day uniquely yours.</p>
-            <p class="reveal reveal-delay-3">Based in Bournemouth, we bring over a decade of expertise in wedding videography to every celebration. As a married couple ourselves, we understand the emotions and significance of your wedding day. This personal connection allows us to anticipate those fleeting moments - the look between you during your vows, your parents' proud tears, the spontaneous laughter with friends - and capture them beautifully and discreetly.</p>
+            <p class="lead-delay-1">Experience the magic of Dorset and Hampshire's premier husband and wife wedding videography team.</p>
         </div>
     </div>
 </section>
@@ -1127,14 +1110,14 @@
 <section class="editorial" style="background:var(--cream);">
     <div class="container">
         <div class="editorial-grid">
-            <div class="editorial-text reveal-left">
+            <div class="editorial-text-left">
                 <span class="section-number">Our Approach</span>
                 <h2>Your Love Story, Naturally Told</h2>
                 <div class="gold-rule gold-rule-left"></div>
                 <p>We believe the best wedding films aren't staged or posed - they're captured as they naturally unfold.</p>
                 <p>Our approach is simple: we blend into your celebration, allowing you to be completely present with your loved ones whilst we document the authentic joy, emotion, and connection that makes your day special. The result? A cinematic film that truly feels like your wedding, not a performance.</p>
             </div>
-            <div class="editorial-img reveal-right">
+            <div class="editorial-img-right">
                 <div class="editorial-img-inner">
                     <div class="editorial-img-frame"></div>
                     <span class="editorial-img-tag">Candid Moments</span>
@@ -1148,13 +1131,13 @@
 <section class="editorial" style="background:var(--white);">
     <div class="container">
         <div class="editorial-grid">
-            <div class="editorial-img reveal-left">
+            <div class="editorial-img-left">
                 <div class="editorial-img-inner">
                     <div class="editorial-img-frame"></div>
                     <span class="editorial-img-tag">Together Since Day One</span>
                 </div>
             </div>
-            <div class="editorial-text reveal-right">
+            <div class="editorial-text-right">
                 <span class="section-number">The EKO Difference</span>
                 <h2>Why Choose a Husband and Wife Team?</h2>
                 <div class="gold-rule gold-rule-left"></div>
@@ -1169,7 +1152,7 @@
 <section class="editorial" style="background:var(--cream);">
     <div class="container">
         <div class="editorial-grid">
-            <div class="editorial-text reveal-left">
+            <div class="editorial-text-left">
                 <span class="section-number">Our Reach</span>
                 <h2>Covering Dorset, Hampshire &amp; South England</h2>
                 <div class="gold-rule gold-rule-left"></div>
@@ -1180,7 +1163,7 @@
                 </div>
                 <a href="contact.html" class="btn btn-gold">Get in Touch <span class="btn-arrow">&rarr;</span></a>
             </div>
-            <div class="editorial-img reveal-right">
+            <div class="editorial-img-right">
                 <div class="editorial-img-inner">
                     <div class="editorial-img-frame"></div>
                     <span class="editorial-img-tag">South England</span>
@@ -1220,13 +1203,11 @@
 <section class="story">
     <div class="container">
         <div class="story-inner">
-            <div class="reveal">
+            <div>
                 <span class="section-number">Our Journey</span>
                 <h2>Our Story</h2>
                 <div class="gold-rule"></div>
             </div>
-            <p class="reveal reveal-delay-1">We launched EKO Wedding Videography following our own wedding, when we realised how quickly the day passes and how precious those authentic moments become.</p>
-            <p class="reveal reveal-delay-2">What began as a love for storytelling has grown into a dedicated service capturing genuine emotions and real connections. Every wedding reminds us why we're passionate about this work - it's about preserving the laughter, tears, joy, and love that make each celebration unique. These aren't just wedding films; they're family heirlooms that become more treasured with every anniversary.</p>
         </div>
     </div>
 </section>
@@ -1234,27 +1215,27 @@
 <!-- WHAT MAKES US DIFFERENT -->
 <section class="different">
     <div class="container">
-        <div class="different-heading reveal">
+        <div class="different-heading">
             <span class="section-number">Our Edge</span>
             <h2>What makes us different</h2>
             <div class="gold-rule"></div>
         </div>
         <div class="diff-grid">
-            <div class="diff-card reveal reveal-delay-1">
+            <div class="diff-card-delay-1">
                 <div class="diff-icon">
                     <svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="16"/><path d="M14 20 L18 24 L26 16"/></svg>
                 </div>
                 <h3>Natural &amp; Unobtrusive</h3>
-                <p>We don't direct or stage your day. Instead, we document it as it naturally unfolds, capturing candid moments that reveal the authentic emotions and connections that make your celebration special.</p>
+                <p>We don't direct or stage your day. Instead, we document it as it naturally unfolds, capturing candid moments that the authentic emotions and connections that make your celebration special.</p>
             </div>
-            <div class="diff-card reveal reveal-delay-2">
+            <div class="diff-card-delay-2">
                 <div class="diff-icon">
                     <svg viewBox="0 0 40 40"><path d="M20 8 C14 8 8 13 8 20 C8 28 16 34 20 36 C24 34 32 28 32 20 C32 13 26 8 20 8Z"/></svg>
                 </div>
                 <h3>Personal Understanding</h3>
                 <p>As a married couple, we bring genuine empathy to every wedding. We've experienced the nerves, joy, and overwhelming love of a wedding day, and this helps us anticipate and capture those meaningful moments others might miss.</p>
             </div>
-            <div class="diff-card reveal reveal-delay-3">
+            <div class="diff-card-delay-3">
                 <div class="diff-icon">
                     <svg viewBox="0 0 40 40"><rect x="6" y="12" width="12" height="18" rx="2"/><rect x="22" y="8" width="12" height="22" rx="2"/><path d="M12 21 L22 19"/></svg>
                 </div>
@@ -1263,14 +1244,14 @@
             </div>
         </div>
         <div class="diff-bottom-row">
-            <div class="diff-card reveal reveal-delay-1">
+            <div class="diff-card-delay-1">
                 <div class="diff-icon">
                     <svg viewBox="0 0 40 40"><circle cx="20" cy="16" r="5"/><path d="M8 34 C8 26 14 22 20 22 C26 22 32 26 32 34"/><path d="M28 10 L32 6 M32 10 L28 6"/></svg>
                 </div>
                 <h3>Dorset &amp; Hampshire Specialists</h3>
                 <p>Years of filming across both counties means we understand local venues, lighting conditions, and those perfect spots for natural couple portraits.</p>
             </div>
-            <div class="diff-card reveal reveal-delay-2">
+            <div class="diff-card-delay-2">
                 <div class="diff-icon">
                     <svg viewBox="0 0 40 40"><path d="M8 30 L8 14 L20 8 L32 14 L32 30"/><path d="M14 18 L14 28"/><path d="M20 16 L20 28"/><path d="M26 18 L26 28"/></svg>
                 </div>
@@ -1285,7 +1266,6 @@
 <section class="working">
     <div class="container">
         <div class="working-inner">
-            <div class="reveal-left">
                 <div class="editorial-img">
                     <div class="editorial-img-inner">
                         <img src="https://www.ekoevents.co.uk/wp-content/uploads/2025/11/IMG_4014_Original-scaled-e1764537360742-768x520.jpg" alt="Ryan &amp; Beth - EKO Wedding Videography">
@@ -1294,7 +1274,7 @@
                     </div>
                 </div>
             </div>
-            <div class="working-text reveal-right">
+            <div class="working-text-right">
                 <span class="section-number">The Experience</span>
                 <h2>Working with us</h2>
                 <div class="gold-rule gold-rule-left"></div>
@@ -1311,33 +1291,33 @@
 <section class="promise grain">
     <div class="container">
         <div class="promise-inner">
-            <div class="reveal">
+            <div>
                 <span class="section-number" style="color:var(--gold-light);">Our Commitment</span>
                 <h3>Our Promise</h3>
                 <div class="gold-rule" style="margin-bottom:40px;"></div>
             </div>
             <div class="promise-grid">
-                <div class="promise-item reveal reveal-delay-1">
+                <div class="promise-item-delay-1">
                     <div class="promise-check"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3"/></svg></div>
                     <span>Discreet, professional service throughout your day</span>
                 </div>
-                <div class="promise-item reveal reveal-delay-2">
+                <div class="promise-item-delay-2">
                     <div class="promise-check"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3"/></svg></div>
                     <span>Natural, candid filming that captures authentic emotions</span>
                 </div>
-                <div class="promise-item reveal reveal-delay-3">
+                <div class="promise-item-delay-3">
                     <div class="promise-check"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3"/></svg></div>
                     <span>Crystal-clear audio of your vows and speeches</span>
                 </div>
-                <div class="promise-item reveal reveal-delay-4">
+                <div class="promise-item-delay-4">
                     <div class="promise-check"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3"/></svg></div>
                     <span>Beautiful cinematic editing that tells your unique story</span>
                 </div>
-                <div class="promise-item reveal reveal-delay-5">
+                <div class="promise-item-delay-5">
                     <div class="promise-check"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3"/></svg></div>
                     <span>Films delivered within 10 weeks of your wedding</span>
                 </div>
-                <div class="promise-item reveal reveal-delay-5">
+                <div class="promise-item-delay-5">
                     <div class="promise-check"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3"/></svg></div>
                     <span>Fully insured with professional backup equipment</span>
                 </div>
@@ -1349,7 +1329,7 @@
 <!-- FEATURED QUOTE -->
 <section class="featured-quote">
     <div class="container">
-        <div class="featured-quote-inner reveal">
+        <div class="featured-quote-inner">
             <div class="featured-quote-mark">&ldquo;</div>
             <blockquote>Ryan and Beth are so friendly, they faded into the background on the day, made us feel at ease throughout, was prompt and professional leading up to it, but most importantly they really captured the essence of the day. The film quality is excellent and the turn around time to get the edited footage back to us was quick. The drone footage also gave the video some context of where we got married which really added to the film. We would 100% recommend them to anyone!!</blockquote>
             <cite>Mr &amp; Mrs Loach</cite>
@@ -1360,14 +1340,14 @@
 <!-- CONTACT -->
 <section class="contact" id="contact">
     <div class="container">
-        <div class="contact-heading reveal">
+        <div class="contact-heading">
             <span class="section-number">Say Hello</span>
             <h2>Get in touch!</h2>
             <h3>Let's discuss your wedding videography...</h3>
             <div class="gold-rule" style="margin-top:20px;"></div>
         </div>
         <div class="contact-grid">
-            <div class="contact-info reveal-left">
+            <div class="contact-info-left">
                 <p>We'd love to hear about your wedding plans! Whether you're getting married in Dorset, Hampshire, or across South England, we're here to answer your questions and discuss how we can capture your special day.</p>
                 <p>As a husband and wife wedding videography team based in Bournemouth, we understand how important it is to find videographers you trust and connect with.</p>
                 <p>We typically respond within 24 hours and are happy to arrange a phone call, video chat, or in-person meeting at your convenience.</p>
@@ -1390,7 +1370,6 @@
                     </li>
                 </ul>
             </div>
-            <form class="reveal-right" onsubmit="event.preventDefault();alert('Message sent! We will be in touch soon.');">
                 <div class="form-group">
                     <label for="name">Name</label>
                     <input type="text" id="name" name="name" required>
