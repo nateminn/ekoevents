@@ -483,24 +483,7 @@
     }
   ]
 }
-}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-        for (var i = 0; i < revealEls.length; i++) { revealObs.observe(revealEls[i]); }
-    } else {
-        // Fallback: show everything
-        for (var i = 0; i < revealEls.length; i++) { revealEls[i].classList.add('revealed'); }
-    }
-
-
-    // Category toggle
-    function toggleCat(btn) {
-        var el = btn.parentElement;
-        if (el.classList.contains('faq-category')) {
-            el.classList.toggle('open');
-        } else if (btn.closest) {
-            btn.closest('.faq-category').classList.toggle('open');
-        }
-    }
-
+}
 </script>
 </head>
 <body>
@@ -1012,12 +995,7 @@
     </div>
 </footer>
 
-<script>
-    // FAQ toggle
-    function toggleFaq(btn) {
-        var item = btn.parentElement;
-        var wasOpen = item.classList.contains('open');
-        v
+<script src="js/faqs.js"></script>
 
 </body>
 </html>
